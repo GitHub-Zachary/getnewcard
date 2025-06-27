@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CardCraft - Free Business Card Maker | Professional Design Tool</title>
+    <meta name="description" content="Create stunning business cards with our free drag-and-drop editor. Professional templates, undo/redo features, and instant download. No design skills needed!">
+    <meta name="keywords" content="business card maker, free business card designer, online business card creator, professional business cards, card design tool">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="CardCraft - Free Business Card Maker">
+    <meta property="og:description" content="Create professional business cards in minutes with our intuitive drag-and-drop editor">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://getnewcard.com">
+    <meta property="og:image" content="https://getnewcard.com/og-image.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CardCraft - Free Business Card Maker">
+    <meta name="twitter:description" content="Create professional business cards in minutes">
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "CardCraft",
+        "description": "Free online business card maker with drag-and-drop editor",
+        "url": "https://getnewcard.com",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "CardCraft"
+        }
+    }
+    </script>
+    
+    <!-- Google Analytics (replace GA_MEASUREMENT_ID with your actual ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+        
+        // Track user actions
+        function trackEvent(action, category = 'User Interaction') {
+            gtag('event', action, {
+                'event_category': category,
+                'event_label': action
+            });
+        }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8fafc;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #6366f1;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #6366f1;
+        }
+        
+        .cta-btn {
+            background: #6366f1;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .cta-btn:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero-cta {
+            background: white;
+            color: #6366f1;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 1rem;
+        }
+        
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        /* Editor Section */
+        .editor-section {
+            padding: 3rem 0;
+            background: white;
+        }
+        
+        .editor-container {
+            display: grid;
+            grid-template-columns: 250px 1fr 300px;
+            gap: 2rem;
+            height: 70vh;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .sidebar h3 {
+            margin-bottom: 1rem;
+            color: #475569;
+            font-size: 1.1rem;
+        }
+        
+        .template-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+        
+        .template-item {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        
+        .template-item:hover {
+            border-color: #6366f1;
+            transform: scale(1.05);
+        }
+        
+        .template-item.active {
+            border-color: #6366f1;
+            background: #f0f4ff;
+        }
+        
+        /* Canvas */
+        .canvas-container {
+            background: #f1f5f9;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            border: 2px dashed #cbd5e1;
+        }
+        
+        .canvas {
+            width: 350px;
+            height: 200px;
+            background: white;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .draggable-element {
+            position: absolute;
+            cursor: move;
+            border: 2px solid transparent;
+            padding: 4px;
+            border-radius: 4px;
+            user-select: none;
+        }
+        
+        .draggable-element:hover {
+            border-color: #6366f1;
+        }
+        
+        .draggable-element.selected {
+            border-color: #6366f1;
+            background: rgba(99, 102, 241, 0.1);
+        }
+        
+        /* Properties Panel */
+        .properties-panel {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .property-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .property-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #475569;
+        }
+        
+        .property-group input, .property-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .color-input {
+            width: 50px;
+            height: 35px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        /* Toolbar */
+        .toolbar {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .toolbar button {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .toolbar button:hover {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+        
+        .toolbar button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+            background: #f8fafc;
+        }
+        
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1e293b;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        /* Loading Spinner */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .loading.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #6366f1;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #059669;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            z-index: 1001;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        .toast.error {
+            background: #dc2626;
+        }
+        
+        /* Help tooltip */
+        .help-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+            z-index: 100;
+        }
+        
+        .help-panel {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            padding: 1.5rem;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            z-index: 101;
+        }
+        
+        .help-panel.show {
+            transform: scale(1);
+        }
+        @media (max-width: 768px) {
+            .editor-container {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .canvas {
+                width: 300px;
+                height: 170px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">CardCraft</a>
+            <ul class="nav-links">
+                <li><a href="#editor">Editor</a></li>
+                <li><a href="#templates">Templates</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <a href="#editor" class="cta-btn">Start Creating</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Create Professional Business Cards</h1>
+            <p>Drag, drop, design - it's that simple! No design experience needed.</p>
+            <button class="hero-cta" onclick="scrollToEditor()">Start Designing Now</button>
+            <button class="cta-btn" style="background: transparent; border: 2px solid white;">View Templates</button>
+        </div>
+    </section>
+
+    <!-- Editor Section -->
+    <section id="editor" class="editor-section">
+        <div class="container">
+            <div class="toolbar">
+                <button id="undoBtn" onclick="undo()" disabled>↶ Undo</button>
+                <button id="redoBtn" onclick="redo()" disabled>↷ Redo</button>
+                <button onclick="addText(); trackEvent('add_text')">+ Add Text</button>
+                <button onclick="addShape(); trackEvent('add_shape')">+ Add Shape</button>
+                <button onclick="addAvatar(); trackEvent('add_avatar')">+ Add Avatar</button>
+                <button onclick="addImage(); trackEvent('add_image')">+ Add Image</button>
+                <button onclick="downloadCard(); trackEvent('download_card')" class="cta-btn">Download PNG</button>
+            </div>
+            
+            <div class="editor-container">
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <h3>Templates</h3>
+                    <div class="template-grid">
+                        <div class="template-item active" onclick="loadTemplate('modern'); setActiveTemplate(this)">
+                            <div style="background: #6366f1; height: 30px; border-radius: 4px; margin-bottom: 5px;"></div>
+                            Modern
+                        </div>
+                        <div class="template-item" onclick="loadTemplate('classic'); setActiveTemplate(this)">
+                            <div style="background: #064e3b; height: 30px; border-radius: 4px; margin-bottom: 5px;"></div>
+                            Classic
+                        </div>
+                        <div class="template-item" onclick="loadTemplate('creative'); setActiveTemplate(this)">
+                            <div style="background: #dc2626; height: 30px; border-radius: 4px; margin-bottom: 5px;"></div>
+                            Creative
+                        </div>
+                        <div class="template-item" onclick="loadTemplate('minimal'); setActiveTemplate(this)">
+                            <div style="background: #6b7280; height: 30px; border-radius: 4px; margin-bottom: 5px;"></div>
+                            Minimal
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Canvas -->
+                <div class="canvas-container">
+                    <div id="canvas" class="canvas">
+                        <!-- Default template elements will be added here -->
+                    </div>
+                </div>
+                
+                <!-- Properties Panel -->
+                <div class="properties-panel">
+                    <h3>Properties</h3>
+                    <div id="propertiesContent">
+                        <p style="color: #64748b; text-align: center; margin-top: 2rem;">Select an element to edit properties</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Why Choose CardCraft?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Drag & Drop Editor</h3>
+                    <p>Intuitive visual editor with complete freedom to position elements anywhere on your card.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">↶</div>
+                    <h3>Undo/Redo</h3>
+                    <p>Full undo and redo functionality - never lose your work or worry about making mistakes.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Design on any device - desktop, tablet, or mobile. Your workspace adapts to your screen.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Professional Templates</h3>
+                    <p>Start with stunning pre-made templates and customize them to match your brand.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Download</h3>
+                    <p>Export high-resolution PNG files ready for printing or digital sharing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>100% Free</h3>
+                    <p>No subscriptions, no hidden fees. Create unlimited business cards completely free.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CardCraft. Professional business card maker - completely free.</p>
+            <p>Keywords: business card maker, free business card designer, online business card creator</p>
+        </div>
+    </footer>
+
+    <script>
+        // Global variables
+        let selectedElement = null;
+        let isDragging = false;
+        let dragOffset = { x: 0, y: 0 };
+        let history = [];
+        let historyIndex = -1;
+        let elementCounter = 0;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTemplate('modern');
+            saveState();
+        });
+
+        // History management
+        function saveState() {
+            const canvas = document.getElementById('canvas');
+            const state = canvas.innerHTML;
+            
+            if (historyIndex < history.length - 1) {
+                history = history.slice(0, historyIndex + 1);
+            }
+            
+            history.push(state);
+            historyIndex++;
+            
+            // Limit history size
+            if (history.length > 50) {
+                history.shift();
+                historyIndex--;
+            }
+            
+            updateUndoRedoButtons();
+        }
+
+        function undo() {
+            if (historyIndex > 0) {
+                historyIndex--;
+                const canvas = document.getElementById('canvas');
+                canvas.innerHTML = history[historyIndex];
+                reattachEventListeners();
+                updateUndoRedoButtons();
+                clearSelection();
+            }
+        }
+
+        function redo() {
+            if (historyIndex < history.length - 1) {
+                historyIndex++;
+                const canvas = document.getElementById('canvas');
+                canvas.innerHTML = history[historyIndex];
+                reattachEventListeners();
+                updateUndoRedoButtons();
+                clearSelection();
+            }
+        }
+
+        function updateUndoRedoButtons() {
+            document.getElementById('undoBtn').disabled = historyIndex <= 0;
+            document.getElementById('redoBtn').disabled = historyIndex >= history.length - 1;
+        }
+
+        // Template selection helper
+        function setActiveTemplate(clickedElement) {
+            document.querySelectorAll('.template-item').forEach(item => item.classList.remove('active'));
+            clickedElement.classList.add('active');
+        }
+
+        // Template loading
+        function loadTemplate(templateName) {
+            const canvas = document.getElementById('canvas');
+            const templates = {
+                modern: `
+                    <div class="draggable-element" style="left: 30px; top: 25px; font-size: 22px; font-weight: bold; color: #6366f1;" data-type="text">John Smith</div>
+                    <div class="draggable-element" style="left: 30px; top: 55px; font-size: 14px; color: #64748b; font-weight: 500;" data-type="text">Senior Product Manager</div>
+                    <div class="draggable-element" style="left: 280px; top: 25px; width: 60px; height: 60px; background: #f0f4ff; border: 2px solid #6366f1; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #6366f1; font-size: 24px;" data-type="avatar">👤</div>
+                    <div class="draggable-element" style="left: 30px; top: 110px; font-size: 12px; color: #374151;" data-type="text">📧 john.smith@company.com</div>
+                    <div class="draggable-element" style="left: 30px; top: 130px; font-size: 12px; color: #374151;" data-type="text">📱 +1 (555) 123-4567</div>
+                    <div class="draggable-element" style="left: 30px; top: 150px; font-size: 12px; color: #374151;" data-type="text">🌐 www.company.com</div>
+                    <div class="draggable-element" style="left: 250px; top: 120px; font-size: 11px; color: #6b7280; text-align: right;" data-type="text">TechCorp Inc.<br>Innovation District</div>
+                `,
+                classic: `
+                    <div class="draggable-element" style="left: 40px; top: 30px; font-size: 20px; font-weight: bold; color: #064e3b; letter-spacing: 1px;" data-type="text">JOHN SMITH</div>
+                    <div class="draggable-element" style="left: 40px; top: 58px; font-size: 13px; color: #065f46; font-weight: 500;" data-type="text">Senior Manager</div>
+                    <div class="draggable-element" style="left: 280px; top: 25px; width: 50px; height: 50px; background: #f0fdf4; border: 2px solid #065f46; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #065f46; font-size: 20px;" data-type="avatar">👤</div>
+                    <div class="draggable-element" style="left: 40px; top: 100px; font-size: 11px; color: #374151; font-weight: 600;" data-type="text">ABC CORPORATION</div>
+                    <div class="draggable-element" style="left: 40px; top: 120px; font-size: 11px; color: #374151;" data-type="text">Email: john.smith@abc.com</div>
+                    <div class="draggable-element" style="left: 200px; top: 120px; font-size: 11px; color: #374151;" data-type="text">Phone: +1 (555) 123-4567</div>
+                    <div class="draggable-element" style="left: 40px; top: 140px; font-size: 11px; color: #374151;" data-type="text">www.abccorporation.com</div>
+                    <div class="draggable-element" style="left: 200px; top: 140px; font-size: 11px; color: #374151;" data-type="text">New York, NY 10001</div>
+                `,
+                creative: `
+                    <div class="draggable-element" style="left: 30px; top: 20px; font-size: 24px; font-weight: bold; color: #dc2626;" data-type="text">Creative Name</div>
+                    <div class="draggable-element" style="left: 30px; top: 50px; font-size: 14px; color: #7c2d12; font-style: italic;" data-type="text">Designer & Artist</div>
+                    <div class="draggable-element" style="left: 260px; top: 20px; width: 60px; height: 60px; background: #fef2f2; border: 2px solid #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 24px;" data-type="avatar">🎨</div>
+                    <div class="draggable-element" style="left: 30px; top: 85px; width: 200px; height: 2px; background: linear-gradient(90deg, #dc2626, #f97316);" data-type="shape"></div>
+                    <div class="draggable-element" style="left: 30px; top: 110px; font-size: 12px; color: #374151;" data-type="text">📧 hello@creative.studio</div>
+                    <div class="draggable-element" style="left: 30px; top: 130px; font-size: 12px; color: #374151;" data-type="text">📱 +1 (555) 987-6543</div>
+                    <div class="draggable-element" style="left: 30px; top: 150px; font-size: 12px; color: #374151;" data-type="text">🌐 creative-portfolio.com</div>
+                    <div class="draggable-element" style="left: 30px; top: 170px; font-size: 10px; color: #7c2d12; font-style: italic;" data-type="text">"Bringing ideas to life through design"</div>
+                `,
+                minimal: `
+                    <div class="draggable-element" style="left: 50px; top: 50px; font-size: 18px; font-weight: 300; color: #374151; letter-spacing: 2px;" data-type="text">MINIMAL</div>
+                    <div class="draggable-element" style="left: 50px; top: 75px; font-size: 12px; color: #6b7280; font-weight: 400;" data-type="text">Professional Title</div>
+                    <div class="draggable-element" style="left: 260px; top: 45px; width: 50px; height: 50px; background: #f9fafb; border: 2px solid #d1d5db; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #6b7280; font-size: 20px;" data-type="avatar">👤</div>
+                    <div class="draggable-element" style="left: 50px; top: 120px; font-size: 11px; color: #9ca3af;" data-type="text">contact@minimal.co</div>
+                    <div class="draggable-element" style="left: 200px; top: 120px; font-size: 11px; color: #9ca3af;" data-type="text">+1 555 000 0000</div>
+                    <div class="draggable-element" style="left: 50px; top: 140px; font-size: 11px; color: #9ca3af;" data-type="text">minimal.co</div>
+                    <div class="draggable-element" style="left: 50px; top: 105px; width: 270px; height: 1px; background: #e5e7eb;" data-type="shape"></div>
+                `
+            };
+            
+            canvas.innerHTML = templates[templateName] || templates.modern;
+            reattachEventListeners();
+            clearSelection();
+            saveState();
+            
+            // Update active template
+            document.querySelectorAll('.template-item').forEach(item => item.classList.remove('active'));
+            
+            // Find and activate the selected template
+            const templateItems = document.querySelectorAll('.template-item');
+            templateItems.forEach(item => {
+                if (item.getAttribute('onclick') && item.getAttribute('onclick').includes(templateName)) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        // Add new elements
+        function addAvatar() {
+            const canvas = document.getElementById('canvas');
+            elementCounter++;
+            const avatarElement = document.createElement('div');
+            avatarElement.className = 'draggable-element';
+            avatarElement.style.cssText = 'left: 50px; top: 50px; width: 60px; height: 60px; background: #f3f4f6; border: 2px solid #d1d5db; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #6b7280; font-size: 24px; cursor: pointer;';
+            avatarElement.setAttribute('data-type', 'avatar');
+            avatarElement.textContent = '👤';
+            avatarElement.title = 'Click to upload photo';
+            
+            // Add click event for photo upload
+            avatarElement.addEventListener('click', function(e) {
+                if (e.target === avatarElement) {
+                    e.stopPropagation();
+                    uploadAvatarPhoto(avatarElement);
+                }
+            });
+            
+            canvas.appendChild(avatarElement);
+            attachElementListeners(avatarElement);
+            selectElement(avatarElement);
+            saveState();
+        }
+
+        function addText() {
+            const canvas = document.getElementById('canvas');
+            elementCounter++;
+            const textElement = document.createElement('div');
+            textElement.className = 'draggable-element';
+            textElement.style.cssText = 'left: 50px; top: 50px; font-size: 14px; color: #374151;';
+            textElement.setAttribute('data-type', 'text');
+            textElement.textContent = 'New Text ' + elementCounter;
+            textElement.contentEditable = true;
+            
+            canvas.appendChild(textElement);
+            attachElementListeners(textElement);
+            selectElement(textElement);
+            saveState();
+        }
+
+        function addShape() {
+            const canvas = document.getElementById('canvas');
+            elementCounter++;
+            const shapeElement = document.createElement('div');
+            shapeElement.className = 'draggable-element';
+            shapeElement.style.cssText = 'left: 100px; top: 100px; width: 80px; height: 40px; background: #6366f1; border-radius: 4px;';
+            shapeElement.setAttribute('data-type', 'shape');
+            
+            canvas.appendChild(shapeElement);
+            attachElementListeners(shapeElement);
+            selectElement(shapeElement);
+            saveState();
+        }
+
+        function addImage() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Validate file type
+                    const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp', 'image/bmp', 'image/svg+xml'];
+                    if (!validTypes.includes(file.type)) {
+                        alert('Please select a valid image file (JPG, PNG, GIF, WebP, BMP, SVG)');
+                        return;
+                    }
+                    
+                    // Check file size (max 10MB)
+                    if (file.size > 10 * 1024 * 1024) {
+                        alert('File size too large. Please select an image under 10MB.');
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const canvas = document.getElementById('canvas');
+                        elementCounter++;
+                        const imgElement = document.createElement('div');
+                        imgElement.className = 'draggable-element';
+                        imgElement.style.cssText = `left: 150px; top: 50px; width: 60px; height: 60px; background-image: url(${e.target.result}); background-size: cover; background-position: center; border-radius: 4px; border: 1px solid #e2e8f0;`;
+                        imgElement.setAttribute('data-type', 'image');
+                        
+                        canvas.appendChild(imgElement);
+                        attachElementListeners(imgElement);
+                        selectElement(imgElement);
+                        saveState();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        }
+
+        // Avatar photo upload function
+        function uploadAvatarPhoto(avatarElement) {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/jpeg,image/jpg,image/png,image/gif,image/webp,image/bmp,image/svg+xml';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Validate file type
+                    const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp', 'image/bmp', 'image/svg+xml'];
+                    if (!validTypes.includes(file.type)) {
+                        alert('Please select a valid image file (JPG, PNG, GIF, WebP, BMP, SVG)');
+                        return;
+                    }
+                    
+                    // Check file size (max 10MB)
+                    if (file.size > 10 * 1024 * 1024) {
+                        alert('File size too large. Please select an image under 10MB.');
+                        return;
+                    }
+                    
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        avatarElement.style.backgroundImage = `url(${e.target.result})`;
+                        avatarElement.style.backgroundSize = 'cover';
+                        avatarElement.style.backgroundPosition = 'center';
+                        avatarElement.textContent = '';
+                        avatarElement.title = 'Click to change photo';
+                        saveState();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+            input.click();
+        }
+
+        // Element selection and dragging
+        function selectElement(element) {
+            clearSelection();
+            selectedElement = element;
+            element.classList.add('selected');
+            showProperties(element);
+        }
+
+        function clearSelection() {
+            if (selectedElement) {
+                selectedElement.classList.remove('selected');
+                selectedElement = null;
+            }
+            document.getElementById('propertiesContent').innerHTML = '<p style="color: #64748b; text-align: center; margin-top: 2rem;">Select an element to edit properties</p>';
+        }
+
+        function attachElementListeners(element) {
+            element.addEventListener('mousedown', startDrag);
+            element.addEventListener('click', function(e) {
+                e.stopPropagation();
+                selectElement(element);
+            });
+            
+            if (element.getAttribute('data-type') === 'text') {
+                element.addEventListener('blur', function() {
+                    saveState();
+                });
+            } else if (element.getAttribute('data-type') === 'avatar') {
+                element.addEventListener('click', function(e) {
+                    if (e.target === element && !isDragging) {
+                        e.stopPropagation();
+                        uploadAvatarPhoto(element);
+                    }
+                });
+            }
+        }
+
+        function reattachEventListeners() {
+            document.querySelectorAll('.draggable-element').forEach(attachElementListeners);
+        }
+
+        function startDrag(e) {
+            if (e.target.contentEditable === 'true' && e.target === document.activeElement) {
+                return; // Don't drag while editing text
+            }
+            
+            isDragging = true;
+            const element = e.target;
+            selectElement(element);
+            
+            const rect = element.getBoundingClientRect();
+            const canvasRect = document.getElementById('canvas').getBoundingClientRect();
+            
+            dragOffset.x = e.clientX - rect.left;
+            dragOffset.y = e.clientY - rect.top;
+            
+            document.addEventListener('mousemove', drag);
+            document.addEventListener('mouseup', stopDrag);
+            e.preventDefault();
+        }
+
+        function drag(e) {
+            if (!isDragging || !selectedElement) return;
+            
+            const canvas = document.getElementById('canvas');
+            const canvasRect = canvas.getBoundingClientRect();
+            
+            let newX = e.clientX - canvasRect.left - dragOffset.x;
+            let newY = e.clientY - canvasRect.top - dragOffset.y;
+            
+            // Keep element within canvas bounds
+            newX = Math.max(0, Math.min(newX, canvas.offsetWidth - selectedElement.offsetWidth));
+            newY = Math.max(0, Math.min(newY, canvas.offsetHeight - selectedElement.offsetHeight));
+            
+            selectedElement.style.left = newX + 'px';
+            selectedElement.style.top = newY + 'px';
+            
+            updateProperties();
+        }
+
+        function stopDrag() {
+            if (isDragging) {
+                isDragging = false;
+                document.removeEventListener('mousemove', drag);
+                document.removeEventListener('mouseup', stopDrag);
+                saveState();
+            }
+        }
+
+        // Properties panel
+        function showProperties(element) {
+            const type = element.getAttribute('data-type');
+            let html = '<div class="property-group"><label>Position</label>';
+            html += `<input type="number" id="posX" value="${parseInt(element.style.left)}" onchange="updateElementProperty('left', this.value + 'px')">`;
+            html += `<input type="number" id="posY" value="${parseInt(element.style.top)}" onchange="updateElementProperty('top', this.value + 'px')">`;
+            html += '</div>';
+            
+            if (type === 'text') {
+                html += '<div class="property-group"><label>Text Content</label>';
+                html += `<input type="text" value="${element.textContent}" onchange="updateElementText(this.value)">`;
+                html += '</div>';
+                
+                html += '<div class="property-group"><label>Font Size</label>';
+                html += `<input type="number" value="${parseInt(element.style.fontSize) || 14}" onchange="updateElementProperty('fontSize', this.value + 'px')">`;
+                html += '</div>';
+                
+                html += '<div class="property-group"><label>Color</label>';
+                html += `<input type="color" class="color-input" value="${rgbToHex(element.style.color) || '#374151'}" onchange="updateElementProperty('color', this.value)">`;
+                html += '</div>';
+                
+                html += '<div class="property-group"><label>Font Weight</label>';
+                html += '<select onchange="updateElementProperty(\'fontWeight\', this.value)">';
+                html += '<option value="normal"' + (element.style.fontWeight === 'normal' ? ' selected' : '') + '>Normal</option>';
+                html += '<option value="bold"' + (element.style.fontWeight === 'bold' ? ' selected' : '') + '>Bold</option>';
+                html += '</select>';
+                html += '</div>';
+            } else if (type === 'shape') {
+                html += '<div class="property-group"><label>Width</label>';
+                html += `<input type="number" value="${parseInt(element.style.width) || 80}" onchange="updateElementProperty('width', this.value + 'px')">`;
+                html += '</div>';
+                
+                html += '<div class="property-group"><label>Height</label>';
+                html += `<input type="number" value="${parseInt(element.style.height) || 40}" onchange="updateElementProperty('height', this.value + 'px')">`;
+                html += '</div>';
+                
+                html += '<div class="property-group"><label>Background Color</label>';
+                html += `<input type="color" class="color-input" value="${rgbToHex(element.style.backgroundColor) || '#6366f1'}" onchange="updateElementProperty('backgroundColor', this.value)">`;
+                html += '</div>';
+                
+                html += '<div class="property-group"><label>Border Radius</label>';
+                html += `<input type="number" value="${parseInt(element.style.borderRadius) || 4}" onchange="updateElementProperty('borderRadius', this.value + 'px')">`;
+                html += '</div>';
+            } else if (type === 'avatar') {
+                html += '<div class="property-group"><label>Size</label>';
+                html += `<input type="number" value="${parseInt(element.style.width) || 60}" onchange="updateAvatarSize(this.value)">`;
+                html += '</div>';
+                
+                html += '<div class="property-group"><label>Border Color</label>';
+                html += `<input type="color" class="color-input" value="${rgbToHex(element.style.borderColor) || '#d1d5db'}" onchange="updateElementProperty('borderColor', this.value)">`;
+                html += '</div>';
+                
+                html += '<div class="property-group"><label>Border Width</label>';
+                html += `<input type="number" value="${parseInt(element.style.borderWidth) || 2}" onchange="updateElementProperty('borderWidth', this.value + 'px')">`;
+                html += '</div>';
+                
+                html += '<div class="property-group">';
+                html += '<button onclick="uploadAvatarPhoto(selectedElement)" style="background: #6366f1; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; width: 100%; margin-bottom: 0.5rem;">Change Photo</button>';
+                html += '<button onclick="removeAvatarPhoto()" style="background: #f59e0b; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; width: 100%;">Remove Photo</button>';
+                html += '</div>';
+            } else if (type === 'image') {
+                html += '<div class="property-group"><label>Width</label>';
+                html += `<input type="number" value="${parseInt(element.style.width) || 60}" onchange="updateElementProperty('width', this.value + 'px')">`;
+                html += '</div>';
+                
+                html += '<div class="property-group"><label>Height</label>';
+                html += `<input type="number" value="${parseInt(element.style.height) || 60}" onchange="updateElementProperty('height', this.value + 'px')">`;
+                html += '</div>';
+                
+                html += '<div class="property-group"><label>Border Radius</label>';
+                html += `<input type="number" value="${parseInt(element.style.borderRadius) || 4}" onchange="updateElementProperty('borderRadius', this.value + 'px')">`;
+                html += '</div>';
+            }
+            
+            html += '<div class="property-group">';
+            html += '<button onclick="deleteElement()" style="background: #ef4444; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; width: 100%;">Delete Element</button>';
+            html += '</div>';
+            
+            document.getElementById('propertiesContent').innerHTML = html;
+        }
+
+        function updateElementProperty(property, value) {
+            if (selectedElement) {
+                selectedElement.style[property] = value;
+                saveState();
+            }
+        }
+
+        function updateElementText(text) {
+            if (selectedElement && selectedElement.getAttribute('data-type') === 'text') {
+                selectedElement.textContent = text;
+                saveState();
+            }
+        }
+
+        function updateAvatarSize(size) {
+            if (selectedElement && selectedElement.getAttribute('data-type') === 'avatar') {
+                selectedElement.style.width = size + 'px';
+                selectedElement.style.height = size + 'px';
+                saveState();
+            }
+        }
+
+        function removeAvatarPhoto() {
+            if (selectedElement && selectedElement.getAttribute('data-type') === 'avatar') {
+                selectedElement.style.backgroundImage = '';
+                selectedElement.textContent = '🎨';
+                selectedElement.title = 'Click to upload photo';
+                saveState();
+            }
+        }
+
+        function updateProperties() {
+            if (selectedElement) {
+                const posX = document.getElementById('posX');
+                const posY = document.getElementById('posY');
+                if (posX) posX.value = parseInt(selectedElement.style.left);
+                if (posY) posY.value = parseInt(selectedElement.style.top);
+            }
+        }
+
+        function deleteElement() {
+            if (selectedElement) {
+                selectedElement.remove();
+                clearSelection();
+                saveState();
+            }
+        }
+
+        // Utility functions
+        function rgbToHex(rgb) {
+            if (!rgb) return '#374151';
+            if (rgb.indexOf('#') === 0) return rgb;
+            
+            const values = rgb.match(/\d+/g);
+            if (!values || values.length < 3) return '#374151';
+            
+            const hex = values.slice(0, 3).map(val => {
+                const hex = parseInt(val).toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            }).join('');
+            
+            return '#' + hex;
+        }
+
+        // Download functionality
+        function performDownload() {
+            const canvas = document.getElementById('canvas');
+            
+            // Create a temporary canvas for high-quality export
+            const tempCanvas = document.createElement('canvas');
+            const ctx = tempCanvas.getContext('2d');
+            
+            // Set high resolution (300 DPI equivalent)
+            const scale = 3;
+            tempCanvas.width = 350 * scale;
+            tempCanvas.height = 200 * scale;
+            
+            // Scale the context for high resolution
+            ctx.scale(scale, scale);
+            
+            // Fill background
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, 350, 200);
+            
+            // Get all elements
+            const elements = canvas.querySelectorAll('.draggable-element');
+            
+            let promises = [];
+            
+            elements.forEach(element => {
+                const type = element.getAttribute('data-type');
+                const x = parseInt(element.style.left);
+                const y = parseInt(element.style.top);
+                
+                if (type === 'text') {
+                    const fontSize = parseInt(element.style.fontSize) || 14;
+                    const color = element.style.color || '#374151';
+                    const fontWeight = element.style.fontWeight || 'normal';
+                    
+                    ctx.font = `${fontWeight} ${fontSize}px "Segoe UI", Arial, sans-serif`;
+                    ctx.fillStyle = color;
+                    ctx.fillText(element.textContent, x, y + fontSize);
+                    
+                } else if (type === 'shape') {
+                    const width = parseInt(element.style.width) || 80;
+                    const height = parseInt(element.style.height) || 40;
+                    const backgroundColor = element.style.backgroundColor || '#6366f1';
+                    const borderRadius = parseInt(element.style.borderRadius) || 4;
+                    
+                    ctx.fillStyle = backgroundColor;
+                    
+                    if (borderRadius > 0) {
+                        ctx.beginPath();
+                        ctx.roundRect(x, y, width, height, borderRadius);
+                        ctx.fill();
+                    } else {
+                        ctx.fillRect(x, y, width, height);
+                    }
+                    
+                } else if (type === 'avatar') {
+                    const size = parseInt(element.style.width) || 60;
+                    const borderColor = element.style.borderColor || '#d1d5db';
+                    const borderWidth = parseInt(element.style.borderWidth) || 2;
+                    const backgroundImage = element.style.backgroundImage;
+                    
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.arc(x + size/2, y + size/2, size/2, 0, 2 * Math.PI);
+                    ctx.clip();
+                    
+                    if (backgroundImage && backgroundImage.includes('url(')) {
+                        const imageUrl = backgroundImage.match(/url\(["']?(.*?)["']?\)/)[1];
+                        const img = new Image();
+                        
+                        const promise = new Promise(resolve => {
+                            img.onload = function() {
+                                ctx.drawImage(img, x, y, size, size);
+                                ctx.restore();
+                                
+                                // Draw border
+                                ctx.beginPath();
+                                ctx.arc(x + size/2, y + size/2, size/2, 0, 2 * Math.PI);
+                                ctx.strokeStyle = borderColor;
+                                ctx.lineWidth = borderWidth;
+                                ctx.stroke();
+                                
+                                resolve();
+                            };
+                            img.onerror = function() {
+                                ctx.restore();
+                                // Draw placeholder
+                                ctx.fillStyle = '#f3f4f6';
+                                ctx.beginPath();
+                                ctx.arc(x + size/2, y + size/2, size/2, 0, 2 * Math.PI);
+                                ctx.fill();
+                                
+                                ctx.fillStyle = '#6b7280';
+                                ctx.font = `${size/3}px "Segoe UI"`;
+                                ctx.textAlign = 'center';
+                                ctx.fillText('👤', x + size/2, y + size/2 + size/8);
+                                
+                                resolve();
+                            };
+                        });
+                        
+                        img.src = imageUrl;
+                        promises.push(promise);
+                    } else {
+                        ctx.restore();
+                        // Draw default avatar
+                        ctx.fillStyle = '#f3f4f6';
+                        ctx.beginPath();
+                        ctx.arc(x + size/2, y + size/2, size/2, 0, 2 * Math.PI);
+                        ctx.fill();
+                        
+                        // Draw border
+                        ctx.beginPath();
+                        ctx.arc(x + size/2, y + size/2, size/2, 0, 2 * Math.PI);
+                        ctx.strokeStyle = borderColor;
+                        ctx.lineWidth = borderWidth;
+                        ctx.stroke();
+                        
+                        // Draw icon
+                        ctx.fillStyle = '#6b7280';
+                        ctx.font = `${size/3}px "Segoe UI"`;
+                        ctx.textAlign = 'center';
+                        ctx.fillText('👤', x + size/2, y + size/2 + size/8);
+                    }
+                    
+                } else if (type === 'image') {
+                    const width = parseInt(element.style.width) || 60;
+                    const height = parseInt(element.style.height) || 60;
+                    const backgroundImage = element.style.backgroundImage;
+                    
+                    if (backgroundImage && backgroundImage.includes('url(')) {
+                        const imageUrl = backgroundImage.match(/url\(["']?(.*?)["']?\)/)[1];
+                        const img = new Image();
+                        
+                        const promise = new Promise(resolve => {
+                            img.onload = function() {
+                                ctx.drawImage(img, x, y, width, height);
+                                resolve();
+                            };
+                            img.onerror = function() {
+                                resolve(); // Continue even if image fails to load
+                            };
+                        });
+                        
+                        img.src = imageUrl;
+                        promises.push(promise);
+                    }
+                }
+            });
+            
+            Promise.all(promises).then(() => {
+                // Convert canvas to blob and download
+                tempCanvas.toBlob(function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'business-card.png';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 'image/png');
+            });
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'z':
+                        e.preventDefault();
+                        if (e.shiftKey) {
+                            redo();
+                        } else {
+                            undo();
+                        }
+                        break;
+                    case 'y':
+                        e.preventDefault();
+                        redo();
+                        break;
+                    case 'd':
+                        e.preventDefault();
+                        if (selectedElement) {
+                            duplicateElement();
+                        }
+                        break;
+                }
+            }
+            
+            if (e.key === 'Delete' && selectedElement) {
+                deleteElement();
+            }
+        });
+
+        function duplicateElement() {
+            if (!selectedElement) return;
+            
+            const canvas = document.getElementById('canvas');
+            const clone = selectedElement.cloneNode(true);
+            
+            // Offset the clone position
+            const currentX = parseInt(clone.style.left);
+            const currentY = parseInt(clone.style.top);
+            clone.style.left = (currentX + 10) + 'px';
+            clone.style.top = (currentY + 10) + 'px';
+            
+            canvas.appendChild(clone);
+            attachElementListeners(clone);
+            selectElement(clone);
+            saveState();
+        }
+
+        // Canvas click to deselect
+        document.getElementById('canvas').addEventListener('click', function(e) {
+            if (e.target === this) {
+                clearSelection();
+            }
+        });
+
+        // Smooth scrolling
+        function scrollToEditor() {
+            document.getElementById('editor').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Initialize the canvas with rounded rectangle support
+        if (CanvasRenderingContext2D.prototype.roundRect === undefined) {
+            CanvasRenderingContext2D.prototype.roundRect = function(x, y, width, height, radius) {
+                this.beginPath();
+                this.moveTo(x + radius, y);
+                this.lineTo(x + width - radius, y);
+                this.quadraticCurveTo(x + width, y, x + width, y + radius);
+                this.lineTo(x + width, y + height - radius);
+                this.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+                this.lineTo(x + radius, y + height);
+                this.quadraticCurveTo(x, y + height, x, y + height - radius);
+                this.lineTo(x, y + radius);
+                this.quadraticCurveTo(x, y, x + radius, y);
+                this.closePath();
+            };
+        }
+    </script>
+
+    <!-- AdSense ad slots (replace with your ad unit IDs) -->
+    <div style="text-align: center; margin: 2rem 0;">
+        <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX"></script> -->
+        <!-- Business Card Maker - Banner Ad -->
+        <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXXX" data-ad-format="auto"></ins> -->
+        <!-- <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+    </div>
+</body>
+</html>
