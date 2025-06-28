@@ -923,7 +923,28 @@
             });
             
             if (element.getAttribute('data-type') === 'text') {
-    element.addEventListener('blur', function() {
+        element.addEventListener('blur', function() {
+            saveState();
+            element.contentEditable = false;
+        });
+        
+        element.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                element.blur();
+            }
+        });
+        
+        // 防止双击编辑冲突
+        element.addEventListener('dblclick', function(e) {
+            e.stopPropagation();
+            if (selectedElement === element) {
+                element.contentEditable = true;
+                element.focus();
+            }
+        });
+    } {  
+    element.addEventListener('blur', function() {  
         saveState();
         element.contentEditable = false;
     });
