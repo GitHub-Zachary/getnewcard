@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Business Card Maker Online | No Download Required | CardCraft</title>
+    <meta name="description" content="Create professional business cards for free with our online editor. No downloads, no subscriptions. Drag-and-drop design tool with templates and instant download.">
+    <meta name="keywords" content="free business card maker, online business card creator, business card generator free, no download business card maker">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27HFQ6CKGM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];  
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-27HFQ6CKGM');
+    </script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f8fafc; line-height: 1.6; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        header { background: white; padding: 1rem 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 24px; font-weight: bold; color: #6366f1; text-decoration: none; }
+        .nav { display: flex; gap: 20px; }
+        .nav a { text-decoration: none; color: #666; font-weight: 500; transition: color 0.3s; }
+        .nav a:hover { color: #6366f1; }
+        .cta-btn { background: #6366f1; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; transition: all 0.3s; }
+        .cta-btn:hover { background: #4f46e5; transform: translateY(-1px); }
+        
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 0; text-align: center; }
+        .hero h1 { font-size: 48px; margin-bottom: 20px; font-weight: 800; }
+        .hero p { font-size: 20px; margin-bottom: 30px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .hero-cta { background: white; color: #6366f1; padding: 15px 30px; border: none; border-radius: 8px; font-size: 18px; font-weight: 700; cursor: pointer; margin: 10px; transition: all 0.3s; text-decoration: none; display: inline-block; }
+        .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+        
+        .breadcrumb { padding: 20px 0; }
+        .breadcrumb a { color: #6366f1; text-decoration: none; }
+        .breadcrumb span { color: #666; }
+        
+        .content-section { padding: 60px 0; }
+        .content-section.alt { background: white; }
+        .content-section h2 { font-size: 36px; margin-bottom: 20px; color: #1f2937; text-align: center; }
+        .content-section h3 { font-size: 24px; margin-bottom: 15px; color: #374151; }
+        .content-section p { font-size: 16px; margin-bottom: 15px; }
+        
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 40px 0; }
+        .feature-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s; }
+        .feature-card:hover { transform: translateY(-5px); }
+        .feature-icon { font-size: 48px; margin-bottom: 20px; }
+        .feature-card h3 { color: #374151; margin-bottom: 15px; }
+        
+        .comparison-section { background: white; padding: 60px 0; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin: 30px 0; }
+        .comparison-table th, .comparison-table td { padding: 15px; text-align: center; border-bottom: 1px solid #e5e7eb; }
+        .comparison-table th { background: #f8fafc; font-weight: 600; color: #374151; }
+        .comparison-table .highlight { background: #f0f9ff; font-weight: 600; }
+        
+        .steps-section { padding: 60px 0; }
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin: 40px 0; }
+        .step-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: center; }
+        .step-number { background: #6366f1; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin: 0 auto 20px auto; }
+        
+        footer { background: #1f2937; color: white; padding: 40px 0; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .footer-section h4 { font-size: 18px; margin-bottom: 15px; color: #f9fafb; }
+        .footer-section p, .footer-section a { color: #d1d5db; text-decoration: none; }
+        .footer-section a:hover { color: white; }
+        .footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #374151; color: #9ca3af; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .nav { display: none; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">CardCraft</a>
+            <nav class="nav">
+                <a href="/">Home</a>
+                <a href="/#editor">Editor</a>
+                <a href="/business-card-templates.html">Templates</a>
+                <a href="/how-to-design-business-cards.html">Design Guide</a>
+                <a href="/free-business-card-maker.html">Free Maker</a>
+            </nav>
+            <a href="/#editor" class="cta-btn">Start Creating</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Free Business Card Maker</h1>
+            <p>Create professional business cards online for free. No downloads, no subscriptions, no hidden fees. Start designing in seconds with our intuitive drag-and-drop editor.</p>
+            <a href="/#editor" class="hero-cta">Start Creating Free Cards</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Home</a> <span>></span> <span>Free Business Card Maker</span>
+        </div>
+    </div>
+
+    <section class="content-section">
+        <div class="container">
+            <h2>Why Choose Our Free Business Card Maker?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>100% Free Forever</h3>
+                    <p>No hidden costs, no premium upgrades required. Create unlimited professional business cards completely free.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚫</div>
+                    <h3>No Download Required</h3>
+                    <p>Works entirely in your browser. No software to install, no apps to download. Start designing immediately.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Professional Templates</h3>
+                    <p>Choose from carefully designed templates for every industry. Customize colors, fonts, and layouts to match your brand.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Results</h3>
+                    <p>Design and download your business cards in minutes. High-resolution PNG files ready for printing or digital sharing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Works Everywhere</h3>
+                    <p>Design on desktop, tablet, or mobile. Your workspace adapts to any screen size for maximum flexibility.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Undo/Redo</h3>
+                    <p>Full editing history with unlimited undo and redo. Experiment freely without worrying about losing your work.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-section">
+        <div class="container">
+            <h2>Free vs Premium Business Card Makers</h2>
+            <p style="text-align: center; margin-bottom: 30px;">See how our free tool compares to expensive alternatives</p>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>CardCraft (Free)</th>
+                        <th>Canva Pro</th>
+                        <th>Vistaprint</th>
+                        <th>Adobe Creative</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Cost</strong></td>
+                        <td class="highlight">$0/month</td>
+                        <td>$12.99/month</td>
+                        <td>$9.99/month</td>
+                        <td>$52.99/month</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Templates</strong></td>
+                        <td class="highlight">Professional designs</td>
+                        <td>Limited free templates</td>
+                        <td>Basic templates</td>
+                        <td>Create from scratch</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Download Quality</strong></td>
+                        <td class="highlight">High-resolution PNG</td>
+                        <td>Watermarked (free)</td>
+                        <td>Low resolution (free)</td>
+                        <td>High resolution</td>
+                    </tr>
+                    <tr>
+                        <td><strong>No Watermarks</strong></td>
+                        <td class="highlight">✓ Always</td>
+                        <td>✗ Premium only</td>
+                        <td>✗ Premium only</td>
+                        <td>✓ Yes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ease of Use</strong></td>
+                        <td class="highlight">Very Easy</td>
+                        <td>Moderate</td>
+                        <td>Easy</td>
+                        <td>Complex</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="steps-section">
+        <div class="container">
+            <h2>How to Create Free Business Cards</h2>
+            <p style="text-align: center; margin-bottom: 40px;">Get professional results in just 4 simple steps</p>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Choose Template</h3>
+                    <p>Select from our professional templates designed for different industries and styles. All templates are completely free to use.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Customize Design</h3>
+                    <p>Add your information, change colors, adjust fonts, and position elements exactly where you want them with our drag-and-drop editor.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Preview & Perfect</h3>
+                    <p>Review your design, make final adjustments, and ensure all information is correct. Use undo/redo to experiment freely.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Download Free</h3>
+                    <p>Download your high-resolution business card as a PNG file. No watermarks, no fees, ready for printing or digital sharing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section alt">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px;">
+                <div>
+                    <h3>Is it really completely free?</h3>
+                    <p>Yes! There are no hidden costs, no premium upgrades required, and no watermarks on your downloaded cards. Create as many designs as you want, completely free.</p>
+                    
+                    <h3>Do I need to create an account?</h3>
+                    <p>No account required! Start designing immediately in your browser. Your designs are created and downloaded instantly without any sign-up process.</p>
+                    
+                    <h3>What file format do I get?</h3>
+                    <p>You'll receive a high-resolution PNG file that's perfect for both digital sharing and professional printing. The file is optimized at print quality resolution.</p>
+                </div>
+                <div>
+                    <h3>Can I use my own images and logos?</h3>
+                    <p>Absolutely! Upload your own photos, logos, and graphics directly into the editor. Supported formats include JPG, PNG, and GIF files.</p>
+                    
+                    <h3>Are the templates professionally designed?</h3>
+                    <p>Yes, all our templates are created by professional designers and optimized for different industries and business types. They follow current design trends and best practices.</p>
+                    
+                    <h3>Can I edit my design after downloading?</h3>
+                    <p>While you can't re-import downloaded files, you can always create a new design based on your previous work. We recommend taking a screenshot before downloading for reference.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2>Ready to Create Your Free Business Cards?</h2>
+            <p style="text-align: center; font-size: 18px; margin-bottom: 30px;">Join thousands of professionals who trust CardCraft for their business card needs</p>
+            <div style="text-align: center;">
+                <a href="/#editor" class="hero-cta">Start Creating Now - It's Free!</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>CardCraft</h4>
+                    <p>Free online business card maker with professional templates and easy-to-use design tools for everyone.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Free Tools</h4>
+                    <p><a href="/free-business-card-maker.html">Free Card Maker</a></p>
+                    <p><a href="/business-card-templates.html">Free Templates</a></p>
+                    <p><a href="/">Online Editor</a></p>
+                    <p>No Download Required</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <p><a href="/how-to-design-business-cards.html">Design Guide</a></p>
+                    <p><a href="/business-card-printing-guide.html">Printing Tips</a></p>
+                    <p><a href="/business-card-size-guide.html">Size Guide</a></p>
+                    <p>Professional Tips</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <p>How to Use Editor</p>
+                    <p>Template Customization</p>
+                    <p>Download Instructions</p>
+                    <p>Technical Support</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CardCraft. Free business card maker online - no downloads, no subscriptions, no limits.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
