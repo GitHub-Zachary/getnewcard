@@ -905,12 +905,15 @@
 }
 
         function clearSelection() {
-            if (selectedElement) {
-                selectedElement.classList.remove('selected');
-                selectedElement = null;
-            }
-            document.getElementById('propertiesContent').innerHTML = '<p style="color: #64748b; text-align: center; margin-top: 2rem;">Select an element to edit properties</p>';
+    if (selectedElement) {
+        selectedElement.classList.remove('selected');
+        if (selectedElement.getAttribute('data-type') === 'text') {
+            selectedElement.contentEditable = false;
         }
+        selectedElement = null;
+    }
+    document.getElementById('propertiesContent').innerHTML = '<p style="color: #64748b; text-align: center; margin-top: 2rem;">Select an element to edit properties</p>';
+}
 
         function attachElementListeners(element) {  
             element.addEventListener('mousedown', startDrag);
