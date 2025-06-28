@@ -893,11 +893,16 @@
 
         // Element selection and dragging
         function selectElement(element) {
-            clearSelection();
-            selectedElement = element;
-            element.classList.add('selected');
-            showProperties(element);
-        }
+    clearSelection();
+    selectedElement = element;
+    element.classList.add('selected');
+    showProperties(element);
+    
+    // 防止文本编辑冲突
+    if (element.getAttribute('data-type') === 'text') {
+        setTimeout(() => element.contentEditable = true, 100);
+    }
+}
 
         function clearSelection() {
             if (selectedElement) {
