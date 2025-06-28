@@ -524,7 +524,7 @@
             <h1>Create Professional Business Cards</h1>
             <p>Drag, drop, design - it's that simple! No design experience needed.</p>
             <button class="hero-cta" onclick="scrollToEditor()">Start Designing Now</button>
-            <button class="cta-btn" style="background: transparent; border: 2px solid white;">View Templates</button>  
+            <button class="cta-btn" style="background: transparent; border: 2px solid white;">View Templates</button>    
         </div>
     </section>
 
@@ -533,12 +533,22 @@
         <div class="container">
             <div class="toolbar">
                 <button id="undoBtn" onclick="undo()" disabled>↶ Undo</button>
-                <button id="redoBtn" onclick="redo()" disabled>↷ Redo</button>
-                <button onclick="addText(); trackEvent('add_text')">+ Add Text</button>
-                <button onclick="addShape(); trackEvent('add_shape')">+ Add Shape</button>
+                <button id="redoBtn" onclick="redo()" disabled>↷ Redo</button>  
+                <button onclick="addText(); trackEvent('add_text')">+ Add Text</button>  
+                <button onclick="addShape(); trackEvent('add_shape')">+ Add Shape</button>  
                 <button onclick="addAvatar(); trackEvent('add_avatar')">+ Add Avatar</button>  
-                <button onclick="addImage(); trackEvent('add_image')">+ Add Image</button>  
-                <button onclick="downloadCard()" style="background: #059669; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">📥 Download PNG</button>  
+                <button onclick="addImage(); trackEvent('add_image')">+ Add Image</button>    
+                <button onclick="downloadCard()" style="background: #059669; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer;">📥 Download PNG</button>      
+            </div>
+
+            <!-- 文本编辑工具栏 -->
+            <div class="text-toolbar" id="textToolbar" style="display: none; justify-content: center; gap: 1rem; margin-bottom: 1rem; padding: 1rem; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">  
+                <button onclick="addLineBreak()" style="padding: 0.5rem 1rem; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; cursor: pointer;">↵ 换行</button>
+                <button onclick="setTextAlign('left')" style="padding: 0.5rem 1rem; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; cursor: pointer;">⟵ 靠左</button>
+                <button onclick="setTextAlign('center')" style="padding: 0.5rem 1rem; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; cursor: pointer;">≡ 居中</button>
+                <button onclick="setTextAlign('right')" style="padding: 0.5rem 1rem; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; cursor: pointer;">⟶ 靠右</button>
+                <button onclick="toggleBold()" style="padding: 0.5rem 1rem; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; cursor: pointer; font-weight: bold;">B</button>
+                <button onclick="toggleItalic()" style="padding: 0.5rem 1rem; border: 1px solid #e2e8f0; border-radius: 6px; background: #f8fafc; cursor: pointer; font-style: italic;">I</button>
             </div>
             
             <div class="editor-container">
@@ -902,6 +912,25 @@
     if (element.getAttribute('data-type') === 'text') {
         setTimeout(() => element.contentEditable = true, 100);
     }
+            function selectElement(element) {
+    clearSelection();
+    selectedElement = element;
+    element.classList.add('selected');
+    showProperties(element);
+    
+    // 防止文本编辑冲突
+    if (element.getAttribute('data-type') === 'text') {
+        setTimeout(() => element.contentEditable = true, 100);
+    }
+    
+    // 显示/隐藏文本工具栏
+    const textToolbar = document.getElementById('textToolbar');
+    if (element.getAttribute('data-type') === 'text') {
+        textToolbar.style.display = 'flex';
+    } else {
+        textToolbar.style.display = 'none';
+    }
+}
 }
 
         function clearSelection() {
@@ -1315,7 +1344,7 @@
                 // Convert canvas to blob and download
                 tempCanvas.toBlob(function(blob) {
                     const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
+                    const a = document.createElement('a');  
                     a.href = url;
                     a.download = 'business-card.png';
                     document.body.appendChild(a);
@@ -1479,6 +1508,40 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+        }
+
+        // 文本工具栏功能
+        function addLineBreak() {
+            if (selectedElement && selectedElement.getAttribute('data-type') === 'text') {
+                selectedElement.innerHTML += '<br>';
+                saveState();
+            }
+        }
+
+        function setTextAlign(align) {
+            if (selectedElement && selectedElement.getAttribute('data-type') === 'text') {
+                selectedElement.style.textAlign = align;
+                saveState();
+                showProperties(selectedElement); // 更新属性面板
+            }
+        }
+
+        function toggleBold() {
+            if (selectedElement && selectedElement.getAttribute('data-type') === 'text') {
+                const current = selectedElement.style.fontWeight;
+                selectedElement.style.fontWeight = current === 'bold' ? 'normal' : 'bold';
+                saveState();
+                showProperties(selectedElement); // 更新属性面板
+            }
+        }
+
+        function toggleItalic() {
+            if (selectedElement && selectedElement.getAttribute('data-type') === 'text') {
+                const current = selectedElement.style.fontStyle;
+                selectedElement.style.fontStyle = current === 'italic' ? 'normal' : 'italic';  
+                saveState();
+                showProperties(selectedElement); // 更新属性面板
+            }
         }
     </script>
 
