@@ -3,36 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CardCraft - Free Business Card Maker</title>
+    <title>CardCraft - Free Business Card Maker | Professional Design Tool</title>
+    <meta name="description" content="Create stunning business cards with our free drag-and-drop editor. Professional templates, business card design tips, and instant download. No design skills needed!">
+    <meta name="keywords" content="business card maker, free business card designer, online business card creator, professional business cards, card design tool, business card templates">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="CardCraft - Free Business Card Maker">
+    <meta property="og:description" content="Create professional business cards in minutes with our intuitive drag-and-drop editor">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://getnewcard.com">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27HFQ6CKGM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];  
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-27HFQ6CKGM');
+        function trackEvent(action, category = 'User Interaction') {
+            gtag('event', action, {'event_category': category,'event_label': action});
+        }
+    </script>
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background: #f0f2f5; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; line-height: 1.6; color: #333; }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         
-        header { background: white; padding: 1rem 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        header { background: white; padding: 1rem 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
         .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .logo { font-size: 24px; font-weight: bold; color: #6366f1; }
+        .logo { font-size: 24px; font-weight: bold; color: #6366f1; text-decoration: none; }
         .nav { display: flex; gap: 20px; }
-        .nav a { text-decoration: none; color: #666; }
-        .cta-btn { background: #6366f1; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; }
+        .nav a { text-decoration: none; color: #666; font-weight: 500; transition: color 0.3s; }
+        .nav a:hover { color: #6366f1; }
+        .cta-btn { background: #6366f1; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; transition: all 0.3s; }
+        .cta-btn:hover { background: #4f46e5; transform: translateY(-1px); }
         
         .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 0; text-align: center; }
-        .hero h1 { font-size: 48px; margin-bottom: 20px; }
-        .hero p { font-size: 20px; margin-bottom: 30px; }
-        .hero-btn { background: white; color: #6366f1; padding: 15px 30px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 10px; }
+        .hero h1 { font-size: 48px; margin-bottom: 20px; font-weight: 800; }
+        .hero p { font-size: 20px; margin-bottom: 30px; opacity: 0.9; }
+        .hero-btn { background: white; color: #6366f1; padding: 15px 30px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 10px; font-weight: 600; transition: all 0.3s; }
+        .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
         
         .editor { background: white; padding: 40px 0; }
         .toolbar { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-        .toolbar button { padding: 10px 15px; border: 1px solid #ddd; background: #f8f9fa; border-radius: 4px; cursor: pointer; }
+        .toolbar button { padding: 10px 15px; border: 1px solid #ddd; background: #f8f9fa; border-radius: 4px; cursor: pointer; font-weight: 500; transition: all 0.3s; }
         .toolbar button:hover { background: #6366f1; color: white; }
         .toolbar button:disabled { opacity: 0.5; cursor: not-allowed; }
         
         .editor-layout { display: grid; grid-template-columns: 200px 1fr 250px; gap: 20px; margin-top: 20px; }
         
         .templates { background: #f8f9fa; padding: 20px; border-radius: 8px; }
-        .templates h3 { margin-bottom: 15px; }
+        .templates h3 { margin-bottom: 15px; color: #374151; }
         .template-grid { display: grid; gap: 10px; }
-        .template-item { padding: 15px; background: white; border: 2px solid #e0e0e0; border-radius: 6px; cursor: pointer; text-align: center; font-size: 14px; }
+        .template-item { padding: 15px; background: white; border: 2px solid #e0e0e0; border-radius: 6px; cursor: pointer; text-align: center; font-size: 14px; transition: all 0.3s; }
         .template-item:hover, .template-item.active { border-color: #6366f1; background: #f0f4ff; }
         
         .canvas-area { display: flex; justify-content: center; align-items: center; background: #f8f9fa; border-radius: 8px; min-height: 400px; }
@@ -42,34 +69,69 @@
         .element:hover, .element.selected { border-color: #6366f1; background: rgba(99, 102, 241, 0.1); }
         
         .properties { background: #f8f9fa; padding: 20px; border-radius: 8px; }
-        .properties h3 { margin-bottom: 15px; }
+        .properties h3 { margin-bottom: 15px; color: #374151; }
         .prop-group { margin-bottom: 15px; }
-        .prop-group label { display: block; margin-bottom: 5px; font-weight: 600; }
+        .prop-group label { display: block; margin-bottom: 5px; font-weight: 600; color: #4b5563; }
         .prop-group input, .prop-group select { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
         
-        .features { padding: 60px 0; background: #f8f9fa; }
-        .features h2 { text-align: center; font-size: 36px; margin-bottom: 40px; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .feature { background: white; padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .feature-icon { font-size: 48px; margin-bottom: 20px; }
+        /* Content Sections */
+        .content-section { padding: 60px 0; }
+        .content-section.alt { background: white; }
+        .content-section h2 { font-size: 36px; margin-bottom: 20px; color: #1f2937; text-align: center; }
+        .content-section h3 { font-size: 24px; margin-bottom: 15px; color: #374151; }
+        .content-section p { font-size: 16px; margin-bottom: 15px; }
+        .content-section ul { margin: 20px 0; padding-left: 20px; }
+        .content-section li { margin-bottom: 8px; }
         
-        footer { background: #333; color: white; padding: 30px 0; text-align: center; }
+        .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+        .content-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        
+        .features { padding: 60px 0; background: #f8f9fa; }
+        .features h2 { text-align: center; font-size: 36px; margin-bottom: 40px; color: #1f2937; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .feature { background: white; padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .feature:hover { transform: translateY(-5px); }
+        .feature-icon { font-size: 48px; margin-bottom: 20px; }
+        .feature h3 { font-size: 20px; margin-bottom: 15px; color: #1f2937; }
+        
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .blog-card { background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); overflow: hidden; transition: transform 0.3s; }
+        .blog-card:hover { transform: translateY(-5px); }
+        .blog-header { background: linear-gradient(45deg, #6366f1, #8b5cf6); color: white; padding: 20px; }
+        .blog-content { padding: 20px; }
+        .blog-card h3 { font-size: 20px; margin-bottom: 10px; color: #1f2937; }
+        .blog-meta { color: #6b7280; font-size: 14px; margin-bottom: 15px; }
+        
+        .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+        .tip-card { background: white; padding: 25px; border-radius: 8px; border-left: 4px solid #6366f1; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .tip-card h4 { color: #6366f1; margin-bottom: 10px; font-size: 18px; }
+        
+        footer { background: #1f2937; color: white; padding: 40px 0; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .footer-section h4 { font-size: 18px; margin-bottom: 15px; color: #f9fafb; }
+        .footer-section p, .footer-section a { color: #d1d5db; text-decoration: none; }
+        .footer-section a:hover { color: white; }
+        .footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #374151; color: #9ca3af; }
         
         @media (max-width: 768px) {
             .editor-layout { grid-template-columns: 1fr; }
             .canvas { width: 300px; height: 170px; }
             .hero h1 { font-size: 32px; }
             .nav { display: none; }
+            .content-grid { grid-template-columns: 1fr; gap: 20px; }
+            .content-section h2 { font-size: 28px; }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="header-content">
-            <div class="logo">CardCraft</div>
+            <a href="#" class="logo">CardCraft</a>
             <nav class="nav">
                 <a href="#editor">Editor</a>
                 <a href="#templates">Templates</a>
+                <a href="#guide">Guide</a>
+                <a href="#tips">Tips</a>
                 <a href="#features">Features</a>
             </nav>
             <a href="#editor" class="cta-btn">Start Creating</a>
@@ -79,7 +141,7 @@
     <section class="hero">
         <div class="container">
             <h1>Create Professional Business Cards</h1>
-            <p>Drag, drop, design - it's that simple!</p>
+            <p>Drag, drop, design - it's that simple! Free online business card maker with professional templates.</p>
             <button class="hero-btn" onclick="document.getElementById('editor').scrollIntoView()">Start Designing Now</button>
         </div>
     </section>
@@ -128,34 +190,180 @@
         </div>
     </section>
 
+    <!-- Business Card Design Guide -->
+    <section id="guide" class="content-section alt">
+        <div class="container">
+            <h2>Business Card Design Guide</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Essential Elements</h3>
+                    <p>Every professional business card should include these key elements:</p>
+                    <ul>
+                        <li><strong>Full Name</strong> - Your complete name in a readable font</li>
+                        <li><strong>Job Title</strong> - Your position or professional role</li>
+                        <li><strong>Company Name</strong> - Business or organization name</li>
+                        <li><strong>Contact Information</strong> - Phone, email, website</li>
+                        <li><strong>Logo or Branding</strong> - Visual identity element</li>
+                    </ul>
+                    <p>Keep the design clean and avoid cluttering your card with too much information. Remember, the goal is to make it easy for people to contact you.</p>
+                </div>
+                <div class="content-card">
+                    <h3>Design Best Practices</h3>
+                    <p>Follow these professional design principles for maximum impact:</p>
+                    <ul>
+                        <li><strong>Use Readable Fonts</strong> - Avoid overly decorative typefaces</li>
+                        <li><strong>Maintain Hierarchy</strong> - Make your name most prominent</li>
+                        <li><strong>Choose Colors Wisely</strong> - Stick to 2-3 colors maximum</li>
+                        <li><strong>Include White Space</strong> - Don't fill every inch of the card</li>
+                        <li><strong>Consider Print Quality</strong> - Use high-resolution elements</li>
+                    </ul>
+                    <p>A well-designed business card reflects your professionalism and attention to detail, making a lasting first impression.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Tips -->
+    <section id="tips" class="content-section">
+        <div class="container">
+            <h2>Professional Design Tips</h2>
+            <p style="text-align: center; font-size: 18px; margin-bottom: 40px;">Master the art of business card design with these expert tips</p>
+            
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h4>📐 Standard Dimensions</h4>
+                    <p>Use standard business card size (3.5" × 2") to ensure your cards fit in wallets and cardholders. Our templates are pre-sized for professional printing.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>🎨 Color Psychology</h4>
+                    <p>Blue conveys trust and professionalism, green suggests growth and stability, while red creates urgency and energy. Choose colors that align with your brand message.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>📝 Typography Rules</h4>
+                    <p>Use no more than 2-3 font families. Make your name the largest text element, followed by your title, then contact information in decreasing order of importance.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>🖼️ Logo Placement</h4>
+                    <p>Position your logo prominently but don't let it overwhelm other elements. Top-left or top-right corners work well, or consider a centered approach for symmetry.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>📱 QR Code Integration</h4>
+                    <p>Include a QR code linking to your website or digital business card. Place it in a corner where it doesn't interfere with essential text information.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>🎯 Call to Action</h4>
+                    <p>Add a subtle call to action like "Visit our website" or "Follow us on LinkedIn" to encourage recipients to engage with your business beyond the initial meeting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry-Specific Examples -->
+    <section class="content-section alt">
+        <div class="container">
+            <h2>Business Card Ideas by Industry</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-header">
+                        <h3>💼 Corporate & Finance</h3>
+                    </div>
+                    <div class="blog-content">
+                        <p class="blog-meta">Professional • Conservative • Trustworthy</p>
+                        <p>Use clean lines, traditional fonts, and conservative colors like navy blue, gray, or black. Include relevant certifications and focus on credibility.</p>
+                        <p><strong>Key elements:</strong> Professional headshot, company logo, credentials (CPA, MBA), office address</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-header">
+                        <h3>🎨 Creative & Design</h3>
+                    </div>
+                    <div class="blog-content">
+                        <p class="blog-meta">Artistic • Bold • Innovative</p>
+                        <p>Showcase your creativity with unique layouts, vibrant colors, and custom graphics. Your card should be a mini portfolio piece.</p>
+                        <p><strong>Key elements:</strong> Portfolio website, social media handles, creative tagline, unique shape or texture</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-header">
+                        <h3>🏥 Healthcare & Medical</h3>
+                    </div>
+                    <div class="blog-content">
+                        <p class="blog-meta">Clean • Reassuring • Professional</p>
+                        <p>Use calming colors like soft blue or green. Include your medical credentials and specializations clearly.</p>
+                        <p><strong>Key elements:</strong> Medical degree abbreviations, clinic/hospital affiliation, appointment booking info</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-header">
+                        <h3>🔧 Technology & IT</h3>
+                    </div>
+                    <div class="blog-content">
+                        <p class="blog-meta">Modern • Tech-savvy • Innovative</p>
+                        <p>Incorporate tech elements like QR codes, modern fonts, and digital-first contact methods. Consider including your GitHub or portfolio links.</p>
+                        <p><strong>Key elements:</strong> LinkedIn profile, GitHub username, tech certifications, company tech stack</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
     <section id="features" class="features">
         <div class="container">
             <h2>Why Choose CardCraft?</h2>
             <div class="features-grid">
                 <div class="feature">
                     <div class="feature-icon">🎨</div>
-                    <h3>Drag & Drop</h3>
-                    <p>Easy visual editor with complete freedom to design your card.</p>
+                    <h3>Drag & Drop Editor</h3>
+                    <p>Easy visual editor with complete freedom to design your card exactly how you want it.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">↶</div>
                     <h3>Undo/Redo</h3>
-                    <p>Never lose your work with full undo and redo functionality.</p>
+                    <p>Never lose your work with full undo and redo functionality. Experiment without worry.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">📱</div>
                     <h3>Mobile Friendly</h3>
-                    <p>Design on any device - desktop, tablet, or mobile.</p>
+                    <p>Design on any device - desktop, tablet, or mobile. Your workspace adapts to your screen.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Professional Templates</h3>
+                    <p>Start with industry-tested templates designed by professionals for maximum impact.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">⚡</div>
                     <h3>Instant Download</h3>
-                    <p>Export high-resolution files ready for printing.</p>
+                    <p>Export high-resolution PNG files ready for professional printing or digital sharing.</p>
                 </div>
                 <div class="feature">
                     <div class="feature-icon">💰</div>
                     <h3>100% Free</h3>
-                    <p>No subscriptions or hidden fees. Create unlimited cards.</p>
+                    <p>No subscriptions or hidden fees. Create unlimited professional business cards completely free.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="content-section">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>What file format do I get when I download?</h3>
+                    <p>You'll receive a high-resolution PNG file that's perfect for both digital sharing and professional printing. The file is optimized at 300 DPI for crisp, clear printing results.</p>
+                    
+                    <h3>Can I edit my design after downloading?</h3>
+                    <p>While downloaded files can't be re-imported into our editor, you can always recreate your design using our tool. We recommend saving your favorite designs by taking a screenshot before downloading.</p>
+                </div>
+                <div class="content-card">
+                    <h3>What's the standard business card size?</h3>
+                    <p>Standard business cards measure 3.5" × 2" (89mm × 51mm). Our templates are designed to these exact specifications for professional printing compatibility.</p>
+                    
+                    <h3>Can I use my own images and logos?</h3>
+                    <p>Yes! You can upload your own images, logos, and photos directly into the editor. Supported formats include JPG, PNG, and GIF files up to 10MB in size.</p>
                 </div>
             </div>
         </div>
@@ -163,7 +371,36 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 CardCraft. Professional business card maker - completely free.</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>CardCraft</h4>
+                    <p>Professional business card maker designed for modern professionals. Create stunning business cards in minutes with our intuitive drag-and-drop editor.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <p><a href="#editor">Business Card Maker</a></p>
+                    <p><a href="#templates">Free Templates</a></p>
+                    <p><a href="#guide">Design Guide</a></p>
+                    <p><a href="#tips">Design Tips</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <p><a href="#guide">Business Card Guide</a></p>
+                    <p><a href="#tips">Professional Tips</a></p>
+                    <p>Industry Examples</p>
+                    <p>Design Best Practices</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <p>How to Use Editor</p>
+                    <p>Download Instructions</p>
+                    <p>Printing Guidelines</p>
+                    <p>Technical Support</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CardCraft. Professional business card maker - completely free. Create unlimited business cards with our online design tool.</p>
+            </div>
         </div>
     </footer>
 
@@ -244,274 +481,3 @@
                     <div class="element" style="left: 270px; top: 25px; width: 50px; height: 50px; background: #f0fdf4; border: 2px solid #059669; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #059669; font-size: 18px;" data-type="avatar">👤</div>
                     <div class="element" style="left: 40px; top: 120px; font-size: 11px; color: #666;" data-type="text">Email: john@abc.com</div>
                     <div class="element" style="left: 40px; top: 140px; font-size: 11px; color: #666;" data-type="text">Phone: +1 (555) 123-4567</div>
-                    <div class="element" style="left: 40px; top: 160px; font-size: 11px; color: #666;" data-type="text">www.abccorp.com</div>
-                `,
-                creative: `
-                    <div class="element" style="left: 30px; top: 20px; font-size: 22px; font-weight: bold; color: #dc2626;" data-type="text">Creative Name</div>
-                    <div class="element" style="left: 30px; top: 50px; font-size: 14px; color: #991b1b; font-style: italic;" data-type="text">Designer & Artist</div>
-                    <div class="element" style="left: 260px; top: 20px; width: 60px; height: 60px; background: #fef2f2; border: 2px solid #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 20px;" data-type="avatar">🎨</div>
-                    <div class="element" style="left: 30px; top: 85px; width: 200px; height: 2px; background: #dc2626;" data-type="shape"></div>
-                    <div class="element" style="left: 30px; top: 110px; font-size: 12px; color: #666;" data-type="text">📧 hello@creative.studio</div>
-                    <div class="element" style="left: 30px; top: 130px; font-size: 12px; color: #666;" data-type="text">📱 +1 (555) 987-6543</div>
-                `
-            };
-            canvas.innerHTML = templates[name] || templates.modern;
-            reattach();
-            clearSelection();
-            saveState();
-        }
-
-        // Element functions
-        function addText() {
-            const canvas = document.getElementById('canvas');
-            counter++;
-            const el = document.createElement('div');
-            el.className = 'element';
-            el.style.cssText = 'left: 50px; top: 50px; font-size: 14px; color: #333;';
-            el.setAttribute('data-type', 'text');
-            el.textContent = 'New Text ' + counter;
-            canvas.appendChild(el);
-            attach(el);
-            select(el);
-            saveState();
-        }
-
-        function addShape() {
-            const canvas = document.getElementById('canvas');
-            counter++;
-            const el = document.createElement('div');
-            el.className = 'element';
-            el.style.cssText = 'left: 100px; top: 100px; width: 80px; height: 40px; background: #6366f1; border-radius: 4px;';
-            el.setAttribute('data-type', 'shape');
-            canvas.appendChild(el);
-            attach(el);
-            select(el);
-            saveState();
-        }
-
-        function addAvatar() {
-            const canvas = document.getElementById('canvas');
-            counter++;
-            const el = document.createElement('div');
-            el.className = 'element';
-            el.style.cssText = 'left: 80px; top: 80px; width: 60px; height: 60px; background: #f3f4f6; border: 2px solid #d1d5db; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #6b7280; font-size: 20px;';
-            el.setAttribute('data-type', 'avatar');
-            el.textContent = '👤';
-            canvas.appendChild(el);
-            attach(el);
-            select(el);
-            saveState();
-        }
-
-        // Selection and dragging
-        function select(el) {
-            clearSelection();
-            selected = el;
-            el.classList.add('selected');
-            showProps(el);
-        }
-
-        function clearSelection() {
-            if (selected) {
-                selected.classList.remove('selected');
-                selected = null;
-            }
-            document.getElementById('props').innerHTML = '<p style="color: #666; text-align: center; margin-top: 50px;">Select an element to edit</p>';
-        }
-
-        function attach(el) {
-            el.addEventListener('mousedown', startDrag);
-            el.addEventListener('click', function(e) {
-                e.stopPropagation();
-                select(el);
-            });
-            if (el.getAttribute('data-type') === 'text') {
-                el.addEventListener('dblclick', function() {
-                    el.contentEditable = true;
-                    el.focus();
-                });
-                el.addEventListener('blur', function() {
-                    el.contentEditable = false;
-                    saveState();
-                });
-            }
-        }
-
-        function reattach() {
-            document.querySelectorAll('.element').forEach(attach);
-        }
-
-        function startDrag(e) {
-            if (e.target.contentEditable === 'true') return;
-            dragging = true;
-            select(e.target);
-            const rect = e.target.getBoundingClientRect();
-            const canvasRect = document.getElementById('canvas').getBoundingClientRect();
-            offset.x = e.clientX - rect.left;
-            offset.y = e.clientY - rect.top;
-            document.addEventListener('mousemove', drag);
-            document.addEventListener('mouseup', stopDrag);
-            e.preventDefault();
-        }
-
-        function drag(e) {
-            if (!dragging || !selected) return;
-            const canvas = document.getElementById('canvas');
-            const canvasRect = canvas.getBoundingClientRect();
-            let x = e.clientX - canvasRect.left - offset.x;
-            let y = e.clientY - canvasRect.top - offset.y;
-            x = Math.max(0, Math.min(x, canvas.offsetWidth - selected.offsetWidth));
-            y = Math.max(0, Math.min(y, canvas.offsetHeight - selected.offsetHeight));
-            selected.style.left = x + 'px';
-            selected.style.top = y + 'px';
-        }
-
-        function stopDrag() {
-            if (dragging) {
-                dragging = false;
-                document.removeEventListener('mousemove', drag);
-                document.removeEventListener('mouseup', stopDrag);
-                saveState();
-            }
-        }
-
-        // Properties
-        function showProps(el) {
-            const type = el.getAttribute('data-type');
-            let html = '<div class="prop-group"><label>Position</label>';
-            html += '<input type="number" value="' + parseInt(el.style.left) + '" onchange="updateProp(\'left\', this.value + \'px\')">';
-            html += '<input type="number" value="' + parseInt(el.style.top) + '" onchange="updateProp(\'top\', this.value + \'px\')">';
-            html += '</div>';
-            
-            if (type === 'text') {
-                html += '<div class="prop-group"><label>Text</label>';
-                html += '<input type="text" value="' + el.textContent + '" onchange="updateText(this.value)">';
-                html += '</div>';
-                html += '<div class="prop-group"><label>Font Size</label>';
-                html += '<input type="number" value="' + (parseInt(el.style.fontSize) || 14) + '" onchange="updateProp(\'fontSize\', this.value + \'px\')">';
-                html += '</div>';
-                html += '<div class="prop-group"><label>Color</label>';
-                html += '<input type="color" value="' + (el.style.color || '#333333') + '" onchange="updateProp(\'color\', this.value)">';
-                html += '</div>';
-            } else if (type === 'shape') {
-                html += '<div class="prop-group"><label>Width</label>';
-                html += '<input type="number" value="' + (parseInt(el.style.width) || 80) + '" onchange="updateProp(\'width\', this.value + \'px\')">';
-                html += '</div>';
-                html += '<div class="prop-group"><label>Height</label>';
-                html += '<input type="number" value="' + (parseInt(el.style.height) || 40) + '" onchange="updateProp(\'height\', this.value + \'px\')">';
-                html += '</div>';
-                html += '<div class="prop-group"><label>Background</label>';
-                html += '<input type="color" value="' + (el.style.backgroundColor || '#6366f1') + '" onchange="updateProp(\'backgroundColor\', this.value)">';
-                html += '</div>';
-            } else if (type === 'avatar') {
-                html += '<div class="prop-group"><label>Size</label>';
-                html += '<input type="number" value="' + (parseInt(el.style.width) || 60) + '" onchange="updateAvatarSize(this.value)">';
-                html += '</div>';
-            }
-            
-            html += '<div class="prop-group">';
-            html += '<button onclick="deleteElement()" style="background: #dc2626; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; width: 100%;">Delete</button>';
-            html += '</div>';
-            
-            document.getElementById('props').innerHTML = html;
-        }
-
-        function updateProp(prop, value) {
-            if (selected) {
-                selected.style[prop] = value;
-                saveState();
-            }
-        }
-
-        function updateText(text) {
-            if (selected && selected.getAttribute('data-type') === 'text') {
-                selected.textContent = text;
-                saveState();
-            }
-        }
-
-        function updateAvatarSize(size) {
-            if (selected && selected.getAttribute('data-type') === 'avatar') {
-                selected.style.width = size + 'px';
-                selected.style.height = size + 'px';
-                saveState();
-            }
-        }
-
-        function deleteElement() {
-            if (selected) {
-                selected.remove();
-                clearSelection();
-                saveState();
-            }
-        }
-
-        // Download
-        function downloadCard() {
-            const canvas = document.getElementById('canvas');
-            const tempCanvas = document.createElement('canvas');
-            const ctx = tempCanvas.getContext('2d');
-            
-            tempCanvas.width = 700;
-            tempCanvas.height = 400;
-            ctx.fillStyle = '#ffffff';
-            ctx.fillRect(0, 0, 700, 400);
-            
-            const elements = canvas.querySelectorAll('.element');
-            elements.forEach(el => {
-                const type = el.getAttribute('data-type');
-                const x = (parseInt(el.style.left) || 0) * 2;
-                const y = (parseInt(el.style.top) || 0) * 2;
-                
-                if (type === 'text') {
-                    const fontSize = (parseInt(el.style.fontSize) || 14) * 2;
-                    ctx.font = fontSize + 'px Arial';
-                    ctx.fillStyle = el.style.color || '#333333';
-                    ctx.fillText(el.textContent, x, y + fontSize);
-                } else if (type === 'shape') {
-                    const width = (parseInt(el.style.width) || 80) * 2;
-                    const height = (parseInt(el.style.height) || 40) * 2;
-                    ctx.fillStyle = el.style.backgroundColor || '#6366f1';
-                    ctx.fillRect(x, y, width, height);
-                } else if (type === 'avatar') {
-                    const size = (parseInt(el.style.width) || 60) * 2;
-                    ctx.fillStyle = el.style.backgroundColor || '#f3f4f6';
-                    ctx.beginPath();
-                    ctx.arc(x + size/2, y + size/2, size/2, 0, 2 * Math.PI);
-                    ctx.fill();
-                    ctx.font = (size/3) + 'px Arial';
-                    ctx.fillStyle = el.style.color || '#6b7280';
-                    ctx.textAlign = 'center';
-                    ctx.fillText(el.textContent || '👤', x + size/2, y + size/2 + size/8);
-                    ctx.textAlign = 'left';
-                }
-            });
-            
-            const link = document.createElement('a');
-            link.download = 'business-card.png';
-            link.href = tempCanvas.toDataURL();
-            link.click();
-        }
-
-        // Canvas click to deselect
-        document.getElementById('canvas').addEventListener('click', function(e) {
-            if (e.target === this) {
-                clearSelection();
-            }
-        });
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.key === 'z') {
-                e.preventDefault();
-                undo();
-            } else if (e.ctrlKey && e.key === 'y') {
-                e.preventDefault();
-                redo();
-            } else if (e.key === 'Delete' && selected) {
-                deleteElement();
-            }
-        });
-    </script>
-</body>
-</html>
