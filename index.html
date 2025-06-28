@@ -912,7 +912,7 @@
             document.getElementById('propertiesContent').innerHTML = '<p style="color: #64748b; text-align: center; margin-top: 2rem;">Select an element to edit properties</p>';
         }
 
-        function attachElementListeners(element) {
+        function attachElementListeners(element) {  
             element.addEventListener('mousedown', startDrag);
             element.addEventListener('click', function(e) {
                 e.stopPropagation();
@@ -920,17 +920,24 @@
             });
             
             if (element.getAttribute('data-type') === 'text') {
-                element.addEventListener('blur', function() {
-                    saveState();
-                });
-            } else if (element.getAttribute('data-type') === 'avatar') {
-                element.addEventListener('click', function(e) {
-                    if (e.target === element && !isDragging) {
-                        e.stopPropagation();
-                        uploadAvatarPhoto(element);
-                    }
-                });
+    element.addEventListener('blur', function() {
+        saveState();
+        element.contentEditable = false;
+    });
+    
+    element.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            if (e.shiftKey) {
+                // Shift+Enter 换行
+                return true;
+            } else {
+                // Enter 结束编辑
+                e.preventDefault();
+                element.blur();
             }
+        }
+    });
+}
         }
 
         function reattachEventListeners() {
