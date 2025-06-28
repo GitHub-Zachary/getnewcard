@@ -7,7 +7,13 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://getnewcard.com/#editor</loc>
+    <loc>https://getnewcard.com/business-card-templates.html</loc>
+    <lastmod>2025-01-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://getnewcard.com/how-to-design-business-cards.html</loc>
     <lastmod>2025-01-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
