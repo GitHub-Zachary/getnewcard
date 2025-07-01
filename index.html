@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CardCraft - Free Business Card Maker | Professional Design Tool</title>
     <meta name="description" content="Create stunning business cards with our free drag-and-drop editor. Professional templates, business card design tips, and instant download. No design skills needed!">
-    <meta name="keywords" content="business card maker, free business card designer, online business card creator, professional business cards, card design tool, business card templates">
+    <meta name="keywords" content="business card maker, free business card designer, online business card creator, professional business cards, card design tool, business card templates">  
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
@@ -146,10 +146,241 @@
                 <a href="/how-to-design-business-cards.html">Guide</a>
                 <a href="#tips">Tips</a>
                 <a href="#features">Features</a>
-                <!-- Google Translate Button -->
-                <div class="google-translate-container">
-                    <div id="google_translate_element"></div>
-                </div>
+                <!-- Google Translate Button -->  
+                <!-- 替换导航栏中的Google翻译部分 -->
+
+<!-- 现代化自定义翻译组件 -->
+<div class="modern-translate-container">
+    <button class="translate-button" id="translateBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="m8 12c1.5-4.5 3.5-7 4-7s2.5 2.5 4 7"/>
+            <path d="m8 12c-1.5 4.5-3.5 7-4 7s-2.5-2.5-4-7"/>
+        </svg>
+        <span id="currentLang">English</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6,9 12,15 18,9"/>
+        </svg>
+    </button>
+    
+    <div class="translate-dropdown" id="langDropdown">
+        <button class="translate-option active" data-lang="en" data-display="English">
+            🇺🇸 English
+        </button>
+        <button class="translate-option" data-lang="zh-CN" data-display="中文">
+            🇨🇳 中文 (简体)
+        </button>
+        <button class="translate-option" data-lang="es" data-display="Español">
+            🇪🇸 Español
+        </button>
+        <button class="translate-option" data-lang="fr" data-display="Français">
+            🇫🇷 Français
+        </button>
+        <button class="translate-option" data-lang="de" data-display="Deutsch">
+            🇩🇪 Deutsch
+        </button>
+        <button class="translate-option" data-lang="ja" data-display="日本語">
+            🇯🇵 日本語
+        </button>
+        <button class="translate-option" data-lang="ko" data-display="한국어">
+            🇰🇷 한국어
+        </button>
+        <button class="translate-option" data-lang="pt" data-display="Português">
+            🇵🇹 Português
+        </button>
+        <button class="translate-option" data-lang="ru" data-display="Русский">
+            🇷🇺 Русский
+        </button>
+        <button class="translate-option" data-lang="ar" data-display="العربية">
+            🇸🇦 العربية
+        </button>
+    </div>
+</div>
+
+<script>
+// 现代翻译功能JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    const translateBtn = document.getElementById('translateBtn');
+    const langDropdown = document.getElementById('langDropdown');
+    const currentLangSpan = document.getElementById('currentLang');
+    const translateOptions = document.querySelectorAll('.translate-option');
+    
+    // 切换下拉菜单
+    translateBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        langDropdown.classList.toggle('show');
+    });
+    
+    // 点击外部关闭下拉菜单
+    document.addEventListener('click', function() {
+        langDropdown.classList.remove('show');
+    });
+    
+    // 语言选择
+    translateOptions.forEach(option => {
+        option.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            // 移除所有active状态
+            translateOptions.forEach(opt => opt.classList.remove('active'));
+            
+            // 添加当前选择的active状态
+            this.classList.add('active');
+            
+            // 更新显示的语言
+            const displayName = this.dataset.display;
+            const langCode = this.dataset.lang;
+            currentLangSpan.textContent = displayName;
+            
+            // 调用Google翻译
+            if (langCode === 'en') {
+                // 如果选择英文，显示原文
+                if (window.google && window.google.translate) {
+                    const translateElement = google.translate.TranslateElement();
+                    if (translateElement) {
+                        translateElement.showOriginalText();
+                    }
+                }
+                // 或者刷新页面显示原文
+                if (window.location.hash.includes('googtrans')) {
+                    window.location.hash = '';
+                    window.location.reload();
+                }
+            } else {
+                // 翻译到选择的语言
+                if (window.google && window.google.translate) {
+                    const translateElement = google.translate.TranslateElement();
+                    if (translateElement) {
+                        translateElement.translate('en', langCode);
+                    }
+                }
+                // 使用hash方式翻译
+                window.location.hash = `#googtrans(en|${langCode})`;
+                window.location.reload();
+            }
+            
+            // 关闭下拉菜单
+            langDropdown.classList.remove('show');
+            
+            // Google Analytics追踪
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'language_change', {
+                    'event_category': 'Translation',
+                    'event_label': langCode
+                });
+            }
+        });
+    });
+    
+    // 检查当前URL是否已经包含翻译参数
+    const hash = window.location.hash;
+    if (hash.includes('googtrans')) {
+        const match = hash.match(/googtrans\(en\|(.+?)\)/);
+        if (match) {
+            const currentLang = match[1];
+            const option = document.querySelector(`[data-lang="${currentLang}"]`);
+            if (option) {
+                translateOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                currentLangSpan.textContent = option.dataset.display;
+            }
+        }
+    }
+});
+</script>
+
+<style>
+/* 现代翻译组件样式 */
+.modern-translate-container {
+    position: relative;
+    display: inline-block;
+}
+
+.translate-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+}
+
+.translate-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    background: linear-gradient(135deg, #5856eb 0%, #7c3aed 100%);
+}
+
+.translate-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    min-width: 200px;
+    z-index: 1000;
+    display: none;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 4px;
+}
+
+.translate-dropdown.show {
+    display: block;
+    animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }  
+}
+
+.translate-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-size: 14px;
+    color: #374151;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+}
+
+.translate-option:hover {
+    background: #f8fafc;
+}
+
+.translate-option.active {  
+    background: #eff6ff;
+    color: #2563eb;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .translate-button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    .translate-dropdown {
+        right: -50px;
+        min-width: 180px;
+    }
+}
+</style>
             </nav>
             <a href="#editor" class="cta-btn">Start Creating</a>
         </div>
