@@ -263,7 +263,7 @@ header {
 document.addEventListener('DOMContentLoaded', function() {
     // 等待Google翻译加载完成
     function waitForGoogleTranslate(callback) {
-        if (window.google && window.google.translate) {
+        if (window.google && window.google.translate) {  
             callback();
         } else {
             setTimeout(() => waitForGoogleTranslate(callback), 100);
@@ -387,12 +387,12 @@ function triggerTranslation(langCode) {
     
     if (langCode === 'en') {
         // 返回英文
-        document.querySelectorAll('[class*="translated"]').forEach(el => {
+        document.querySelectorAll('[class*="translated"]').forEach(el => {  
             el.classList.remove('translated-ltr', 'translated-rtl');
         });
         
         // 移除翻译样式
-        const style = document.getElementById('goog-gt-tt-style');
+        const style = document.getElementById('goog-gt-tt-style');  
         if (style) style.remove();
         
         // 清除hash
@@ -406,6 +406,149 @@ function triggerTranslation(langCode) {
         window.location.reload();
     }
 }
+
+    // 强制隐藏Google翻译横幅的JavaScript
+function forceHideBanner() {
+    console.log('Attempting to hide Google Translate banner...');
+    
+    // 隐藏翻译横幅
+    const banners = document.querySelectorAll('.goog-te-banner-frame, iframe[src*="translate"], .goog-te-banner-frame.skiptranslate');
+    console.log('Found banners:', banners.length);
+    
+    banners.forEach((banner, index) => {
+        console.log('Hiding banner', index, banner);
+        banner.style.display = 'none !important';
+        banner.style.visibility = 'hidden !important';
+        banner.style.height = '0 !important';
+        banner.style.minHeight = '0 !important';
+        banner.style.maxHeight = '0 !important';
+        banner.style.opacity = '0 !important';
+        banner.style.position = 'absolute !important';
+        banner.style.left = '-9999px !important';
+        banner.style.top = '-9999px !important';
+        
+        // 直接移除元素
+        if (banner.parentNode) {
+            banner.parentNode.removeChild(banner);
+        }
+    });
+    
+    // 查找并隐藏所有可能的翻译相关iframe
+    const iframes = document.querySelectorAll('iframe');
+    iframes.forEach(iframe => {
+        if (iframe.src && (iframe.src.includes('translate') || iframe.src.includes('google'))) {
+            console.log('Hiding iframe:', iframe.src);
+            iframe.style.display = 'none !important';
+            iframe.style.visibility = 'hidden !important';
+            iframe.style.height = '0 !important';
+            iframe.style.width = '0 !important';
+        }
+    });
+    
+    // 重置body位置
+    document.body.style.top = '0 !important';
+    document.body.style.marginTop = '0 !important';
+    document.body.style.paddingTop = '0 !important';
+    document.body.style.position = 'relative !important';
+    
+    // 重置html位置
+    document.documentElement.style.marginTop = '0 !important';
+    document.documentElement.style.paddingTop = '0 !important';
+    
+    console.log('Banner hide attempt completed');
+}
+
+// 多重执行策略
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, starting banner hide sequence');
+    forceHideBanner();
+    
+    // 延迟执行多次
+    setTimeout(forceHideBanner, 100);
+    setTimeout(forceHideBanner, 500);
+    setTimeout(forceHideBanner, 1000);
+    setTimeout(forceHideBanner, 2000);
+    setTimeout(forceHideBanner, 3000);
+});
+
+// 页面完全加载后执行
+window.addEventListener('load', function() {
+    console.log('Window loaded, hiding banner again');
+    setTimeout(forceHideBanner, 100);
+    setTimeout(forceHideBanner, 500);
+    setTimeout(forceHideBanner, 1000);
+});
+
+// 监听DOM变化，防止横幅重新出现
+const observer = new MutationObserver(function(mutations) {
+    let shouldHide = false;
+    
+    mutations.forEach(function(mutation) {
+        if (mutation.addedNodes.length > 0) {
+            mutation.addedNodes.forEach(function(node) {
+                if (node.nodeType === 1) { // Element node
+                    if (node.classList && (
+                        node.classList.contains('goog-te-banner-frame') ||
+                        node.classList.contains('skiptranslate') ||
+                        (node.tagName === 'IFRAME' && node.src && node.src.includes('translate'))
+                    )) {
+                        console.log('New banner detected, hiding...');
+                        shouldHide = true;
+                        node.style.display = 'none !important';
+                        node.style.visibility = 'hidden !important';
+                        
+                        // 直接移除
+                        setTimeout(() => {
+                            if (node.parentNode) {
+                                node.parentNode.removeChild(node);
+                            }
+                        }, 10);
+                    }
+                }
+            });
+        }
+    });
+    
+    if (shouldHide) {
+        setTimeout(forceHideBanner, 10);
+    }
+});
+
+// 开始观察
+if (document.body) {
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class', 'style']
+    });
+} else {
+    document.addEventListener('DOMContentLoaded', function() {
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['class', 'style']
+        });
+    });
+}
+
+// 额外的强制方法：直接从head移除相关样式
+function removeGoogleStyles() {
+    const styles = document.querySelectorAll('style, link');
+    styles.forEach(style => {
+        if (style.innerHTML && style.innerHTML.includes('goog-te-banner-frame')) {
+            style.innerHTML = style.innerHTML.replace(/\.goog-te-banner-frame[^}]*}/g, '.goog-te-banner-frame{display:none!important}');
+        }
+    });
+}
+
+setInterval(removeGoogleStyles, 1000);
+
+console.log('Advanced banner hiding system initialized');
+
+</script>
+    
 </script>
 
 <style>
