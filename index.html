@@ -14,7 +14,7 @@
     <meta property="og:title" content="CardCraft - Free Business Card Maker">
     <meta property="og:description" content="Create professional business cards in minutes with our intuitive drag-and-drop editor">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://getnewcard.com">
+    <meta property="og:url" content="https://getnewcard.com">  
     
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-27HFQ6CKGM"></script>
@@ -199,95 +199,153 @@
 </div>
 
 <script>
-// 现代翻译功能JavaScript
+// 工作正常的现代翻译功能
 document.addEventListener('DOMContentLoaded', function() {
-    const translateBtn = document.getElementById('translateBtn');
-    const langDropdown = document.getElementById('langDropdown');
-    const currentLangSpan = document.getElementById('currentLang');
-    const translateOptions = document.querySelectorAll('.translate-option');
-    
-    // 切换下拉菜单
-    translateBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        langDropdown.classList.toggle('show');
-    });
-    
-    // 点击外部关闭下拉菜单
-    document.addEventListener('click', function() {
-        langDropdown.classList.remove('show');
-    });
-    
-    // 语言选择
-    translateOptions.forEach(option => {
-        option.addEventListener('click', function(e) {
-            e.stopPropagation();
-            
-            // 移除所有active状态
-            translateOptions.forEach(opt => opt.classList.remove('active'));
-            
-            // 添加当前选择的active状态
-            this.classList.add('active');
-            
-            // 更新显示的语言
-            const displayName = this.dataset.display;
-            const langCode = this.dataset.lang;
-            currentLangSpan.textContent = displayName;
-            
-            // 调用Google翻译
-            if (langCode === 'en') {
-                // 如果选择英文，显示原文
-                if (window.google && window.google.translate) {
-                    const translateElement = google.translate.TranslateElement();
-                    if (translateElement) {
-                        translateElement.showOriginalText();
-                    }
-                }
-                // 或者刷新页面显示原文
-                if (window.location.hash.includes('googtrans')) {
-                    window.location.hash = '';
-                    window.location.reload();
-                }
-            } else {
-                // 翻译到选择的语言
-                if (window.google && window.google.translate) {
-                    const translateElement = google.translate.TranslateElement();
-                    if (translateElement) {
-                        translateElement.translate('en', langCode);
-                    }
-                }
-                // 使用hash方式翻译
-                window.location.hash = `#googtrans(en|${langCode})`;
-                window.location.reload();
-            }
-            
-            // 关闭下拉菜单
-            langDropdown.classList.remove('show');
-            
-            // Google Analytics追踪
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'language_change', {
-                    'event_category': 'Translation',
-                    'event_label': langCode
-                });
-            }
-        });
-    });
-    
-    // 检查当前URL是否已经包含翻译参数
-    const hash = window.location.hash;
-    if (hash.includes('googtrans')) {
-        const match = hash.match(/googtrans\(en\|(.+?)\)/);
-        if (match) {
-            const currentLang = match[1];
-            const option = document.querySelector(`[data-lang="${currentLang}"]`);
-            if (option) {
-                translateOptions.forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-                currentLangSpan.textContent = option.dataset.display;
-            }
+    // 等待Google翻译加载完成
+    function waitForGoogleTranslate(callback) {
+        if (window.google && window.google.translate) {
+            callback();
+        } else {
+            setTimeout(() => waitForGoogleTranslate(callback), 100);
         }
     }
+    
+    waitForGoogleTranslate(function() {
+        const translateBtn = document.getElementById('translateBtn');
+        const langDropdown = document.getElementById('langDropdown');
+        const currentLangSpan = document.getElementById('currentLang');
+        const translateOptions = document.querySelectorAll('.translate-option');
+        
+        // 切换下拉菜单
+        translateBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            langDropdown.classList.toggle('show');
+        });
+        
+        // 点击外部关闭下拉菜单
+        document.addEventListener('click', function() {
+            langDropdown.classList.remove('show');
+        });
+        
+        // 语言选择
+        translateOptions.forEach(option => {
+            option.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                console.log('Language selected:', this.dataset.lang); // 调试用
+                
+                // 移除所有active状态
+                translateOptions.forEach(opt => opt.classList.remove('active'));
+                
+                // 添加当前选择的active状态
+                this.classList.add('active');
+                
+                // 更新显示的语言
+                const displayName = this.dataset.display;
+                const langCode = this.dataset.lang;
+                currentLangSpan.textContent = displayName;
+                
+                // 调用Google翻译
+                if (langCode === 'en') {
+                    // 如果选择英文，显示原文
+                    console.log('Switching to English');
+                    if (window.location.hash.includes('googtrans')) {
+                        window.location.hash = '';
+                        window.location.reload();
+                    }
+                } else {
+                    // 翻译到选择的语言
+                    console.log('Translating to:', langCode);
+                    
+                    // 方法1：使用hash方式（最可靠）
+                    const newHash = `#googtrans(en|${langCode})`;
+                    console.log('Setting hash:', newHash);
+                    window.location.hash = newHash;
+                    
+                    // 强制刷新来应用翻译
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 100);
+                }
+                
+                // 关闭下拉菜单
+                langDropdown.classList.remove('show');
+                
+                // Google Analytics追踪
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'language_change', {
+                        'event_category': 'Translation',
+                        'event_label': langCode
+                    });
+                }
+            });
+        });
+        
+        // 检查当前URL是否已经包含翻译参数
+        function updateUIFromHash() {
+            const hash = window.location.hash;
+            console.log('Current hash:', hash); // 调试用
+            
+            if (hash.includes('googtrans')) {
+                const match = hash.match(/googtrans\(en\|(.+?)\)/);
+                if (match) {
+                    const currentLang = match[1];
+                    console.log('Detected language from hash:', currentLang);
+                    
+                    const option = document.querySelector(`[data-lang="${currentLang}"]`);
+                    if (option) {
+                        translateOptions.forEach(opt => opt.classList.remove('active'));
+                        option.classList.add('active');
+                        currentLangSpan.textContent = option.dataset.display;
+                        console.log('UI updated for language:', currentLang);
+                    }
+                }
+            } else {
+                // 没有翻译参数，显示英文
+                translateOptions.forEach(opt => opt.classList.remove('active'));
+                const englishOption = document.querySelector('[data-lang="en"]');
+                if (englishOption) {
+                    englishOption.classList.add('active');
+                    currentLangSpan.textContent = 'English';
+                }
+            }
+        }
+        
+        // 页面加载时检查
+        updateUIFromHash();
+        
+        // 监听hash变化
+        window.addEventListener('hashchange', updateUIFromHash);
+        
+        console.log('Translation system initialized'); // 调试用
+    });
 });
+
+// 添加额外的翻译触发方法（备用）
+function triggerTranslation(langCode) {
+    console.log('Backup translation trigger for:', langCode);
+    
+    if (langCode === 'en') {
+        // 返回英文
+        document.querySelectorAll('[class*="translated"]').forEach(el => {
+            el.classList.remove('translated-ltr', 'translated-rtl');
+        });
+        
+        // 移除翻译样式
+        const style = document.getElementById('goog-gt-tt-style');
+        if (style) style.remove();
+        
+        // 清除hash
+        if (window.location.hash.includes('googtrans')) {
+            window.location.hash = '';
+            window.location.reload();
+        }
+    } else {
+        // 应用翻译
+        window.location.hash = `#googtrans(en|${langCode})`;
+        window.location.reload();
+    }
+}
 </script>
 
 <style>
