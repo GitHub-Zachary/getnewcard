@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CardCraft - Free Business Card Maker | Professional Design Tool</title>
-    <meta name="description" content="Create stunning business cards with our free drag-and-drop editor. Professional templates, business card design tips, and instant download. No design skills needed!">  
+    <meta name="description" content="Create stunning business cards with our free drag-and-drop editor. Professional templates, business card design tips, and instant download. No design skills needed!">
     <meta name="keywords" content="business card maker, free business card designer, online business card creator, professional business cards, card design tool, business card templates">
     
     <!-- Favicon -->
@@ -17,29 +17,16 @@
     <meta property="og:url" content="https://getnewcard.com">
     
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27HFQ6CKGM"></script>  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27HFQ6CKGM"></script>
     <script>
         window.dataLayer = window.dataLayer || [];  
-        function gtag(){dataLayer.push(arguments);}  
+        function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-27HFQ6CKGM');
         function trackEvent(action, category = 'User Interaction') {
             gtag('event', action, {'event_category': category,'event_label': action});
         }
     </script>
-
-    <!-- Google Translate -->
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'en',
-    includedLanguages: 'zh-CN,es,fr,de,ja,ko,pt,ru,ar,hi,it,nl,sv',
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-    autoDisplay: false
-  }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>  
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -49,19 +36,19 @@ function googleTranslateElementInit() {
         header { background: white; padding: 1rem 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
         .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .logo { font-size: 24px; font-weight: bold; color: #6366f1; text-decoration: none; }
-        .nav { display: flex; gap: 20px; align-items: center; }  
-        .nav a { text-decoration: none; color: #666; font-weight: 500; transition: color 0.3s; }  
+        .nav { display: flex; gap: 20px; }
+        .nav a { text-decoration: none; color: #666; font-weight: 500; transition: color 0.3s; }
         .nav a:hover { color: #6366f1; }
         .cta-btn { background: #6366f1; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; transition: all 0.3s; }
-        .cta-btn:hover { background: #4f46e5; transform: translateY(-1px); }  
+        .cta-btn:hover { background: #4f46e5; transform: translateY(-1px); }  
         
         .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 0; text-align: center; }
-        .hero h1 { font-size: 48px; margin-bottom: 20px; font-weight: 800; }  
+        .hero h1 { font-size: 48px; margin-bottom: 20px; font-weight: 800; }  
         .hero p { font-size: 20px; margin-bottom: 30px; opacity: 0.9; }
         .hero-btn { background: white; color: #6366f1; padding: 15px 30px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 10px; font-weight: 600; transition: all 0.3s; }
         .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
         
-        .editor { background: white; padding: 40px 0; }  
+        .editor { background: white; padding: 40px 0; }  
         
         
         /* Content Sections */
@@ -76,7 +63,7 @@ function googleTranslateElementInit() {
         .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
         .content-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         
-        .features { padding: 60px 0; background: #f8f9fa; }  
+        .features { padding: 60px 0; background: #f8f9fa; }  
         .features h2 { text-align: center; font-size: 36px; margin-bottom: 40px; color: #1f2937; }
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
         .feature { background: white; padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s; }
@@ -102,87 +89,11 @@ function googleTranslateElementInit() {
         .footer-section p, .footer-section a { color: #d1d5db; text-decoration: none; }
         .footer-section a:hover { color: white; }
         .footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #374151; color: #9ca3af; }
-
-        /* Google翻译隐藏横幅 */
-.goog-te-banner-frame { display: none !important; }
-body { top: 0 !important; }
-
-/* 现代翻译按钮样式 */
-.translate-container {
-    position: relative;
-    display: inline-block;
-}
-.translate-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.translate-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-}
-.translate-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-    min-width: 200px;
-    z-index: 1000;
-    display: none;
-    margin-top: 4px;  
-}
-.translate-dropdown.show { display: block; }
-.translate-option {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    cursor: pointer;
-    border: none;
-    background: none;
-    width: 100%;
-    text-align: left;
-    font-size: 14px;
-    color: #374151;
-}
-.translate-option:hover { background: #f8fafc; }
-.translate-option.active { background: #eff6ff; color: #2563eb; font-weight: 500; }
-
-        /* Editor Loading State */
-        .editor-loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 400px;
-            flex-direction: column;
-        }
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f4f6;
-            border-top: 4px solid #6366f1;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
         
         @media (max-width: 768px) {
             .hero h1 { font-size: 32px; }
-            .nav { display: none; }    
-            .content-grid { grid-template-columns: 1fr; gap: 20px; }  
+            .nav { display: none; }  
+            .content-grid { grid-template-columns: 1fr; gap: 20px; }  
             .content-section h2 { font-size: 28px; }
         }
     </style>
@@ -194,31 +105,13 @@ body { top: 0 !important; }
         <div class="header-content">
             <a href="#" class="logo">CardCraft</a>
             <nav class="nav">
-    <a href="#editor">Editor</a>
-    <a href="/business-card-templates.html">Templates</a>
-    <a href="/how-to-design-business-cards.html">Guide</a>
-    <a href="#tips">Tips</a>
-    <a href="#features">Features</a>
-    
-    <div class="translate-container">
-        <button class="translate-btn" id="translateBtn">
-            🌐 <span id="currentLang">English</span> ▼
-        </button>
-        <div class="translate-dropdown" id="langDropdown">
-            <button class="translate-option active" data-lang="en">🇺🇸 English</button>
-            <button class="translate-option" data-lang="zh-CN">🇨🇳 中文</button>  
-            <button class="translate-option" data-lang="es">🇪🇸 Español</button>
-            <button class="translate-option" data-lang="fr">🇫🇷 Français</button>
-            <button class="translate-option" data-lang="de">🇩🇪 Deutsch</button>
-            <button class="translate-option" data-lang="ja">🇯🇵 日本語</button>
-            <button class="translate-option" data-lang="ko">🇰🇷 한국어</button>
-            <button class="translate-option" data-lang="pt">🇵🇹 Português</button>
-            <button class="translate-option" data-lang="ru">🇷🇺 Русский</button>
-            <button class="translate-option" data-lang="ar">🇸🇦 العربية</button>
-        </div>
-    </div>
+                <a href="#editor">Editor</a>
+                <a href="#templates">Templates</a>
+                <a href="#guide">Guide</a>
+                <a href="#tips">Tips</a>
+                <a href="#features">Features</a>
             </nav>
-            <a href="#editor" class="cta-btn">Start Creating</a>  
+            <a href="#editor" class="cta-btn">Start Creating</a>
         </div>
     </header>
 
@@ -226,20 +119,11 @@ body { top: 0 !important; }
         <div class="container">
             <h1>Create Professional Business Cards</h1>
             <p>Drag, drop, design - it's that simple! Free online business card maker with professional templates.</p>
-            <button class="hero-btn" onclick="document.getElementById('editor').scrollIntoView(); setTimeout(() => window.initEditor && window.initEditor(), 500);">Start Designing Now</button>
+            <button class="hero-btn" onclick="document.getElementById('editor').scrollIntoView()">Start Designing Now</button>
         </div>
     </section>
 
     <section id="editor" class="editor">
-    <div class="container">
-        <div id="business-card-editor">
-            <div class="editor-loading">
-                <div class="loading-spinner"></div>
-                <p class="mt-4 text-gray-600">Loading Business Card Editor...</p>
-            </div>
-        </div>
-    </div>
-</section>
     <div class="container">
         <div id="business-card-editor"></div>
     </div>
@@ -388,7 +272,7 @@ body { top: 0 !important; }
                     <p>Start with industry-tested templates designed by professionals for maximum impact.</p>
                 </div>
                 <div class="feature">
-                    <div class="feature-icon">⚡</div>  
+                    <div class="feature-icon">⚡</div>  
                     <h3>Instant Download</h3>
                     <p>Export high-resolution PNG files ready for professional printing or digital sharing.</p>
                 </div>
@@ -457,12 +341,12 @@ body { top: 0 !important; }
                 <p>&copy; 2025 CardCraft. Professional business card maker - completely free. Create unlimited business cards with our online design tool.</p>
             </div>
         </div>
-    </footer>  
+    </footer>  
 
     <!-- React库 -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>  
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>  
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>      
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>  
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>  
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>      
 
     <script type="text/babel">
 const { useState, useRef } = React;  
@@ -582,7 +466,7 @@ const defaultTemplates = [
                 secondaryColor: "#e0e7ff", 
                 fontFamily: "Arial",
                 nameStyle: { fontSize: 18, fontWeight: 'bold', textAlign: 'left', fontStyle: 'normal' },
-                titleStyle: { fontSize: 14, fontWeight: 'normal', textAlign: 'left', fontStyle: 'normal' },  
+                titleStyle: { fontSize: 14, fontWeight: 'normal', textAlign: 'left', fontStyle: 'normal' },
                 companyStyle: { fontSize: 14, fontWeight: 'normal', textAlign: 'left', fontStyle: 'normal' },
                 contactStyle: { fontSize: 12, fontWeight: 'normal', textAlign: 'left', fontStyle: 'normal' }
             }  
@@ -594,7 +478,7 @@ const BusinessCardEditor = () => {
     const [selectedTemplate, setSelectedTemplate] = useState(defaultTemplates[0]);
     const [cardData, setCardData] = useState(defaultTemplates[0].data);
     const [isEditing, setIsEditing] = useState(false);
-    const [activeField, setActiveField] = useState(null);const [uploadedImage, setUploadedImage] = useState(null);
+    const [activeField, setActiveField] = useState(null);
     const cardRef = useRef(null);
 
     const updateCardData = (field, value) => {
@@ -623,23 +507,12 @@ const BusinessCardEditor = () => {
     };
 
     const getFieldStyleType = (field) => {
-        if (field === 'name') return 'nameStyle';  
+        if (field === 'name') return 'nameStyle';
         if (field === 'title') return 'titleStyle';
         if (field === 'company') return 'companyStyle';
-        return 'contactStyle';  
+        return 'contactStyle';
     };
 
-    const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file && file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            setUploadedImage(e.target.result);
-        };
-        reader.readAsDataURL(file);
-    }
-};
-    
     const selectTemplate = (template) => {  
         setSelectedTemplate(template);  
         setCardData(template.data);
@@ -654,16 +527,13 @@ const BusinessCardEditor = () => {
     };
 
     const exportCard = () => {
-        const canvas = document.createElement('canvas');  
+        const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-        const scale = 3; // 3倍清晰度
-canvas.width = 350 * scale; 
-canvas.height = 200 * scale;
-ctx.scale(scale, scale);  
+        canvas.width = 350; canvas.height = 200;
         
         const { style } = cardData;
         ctx.fillStyle = style.backgroundColor;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);  
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
         
         ctx.fillStyle = style.primaryColor;
         ctx.font = 'bold 18px Arial';
@@ -678,34 +548,17 @@ ctx.scale(scale, scale); 
         ctx.fillText(cardData.phone, 20, 110);
         ctx.fillText(cardData.email, 20, 125);
         ctx.fillText(cardData.website, 20, 140);
-        ctx.fillText(cardData.address, 20, 155);  
-
-        // 绘制上传的图片
-if (uploadedImage) {
-    const img = new Image();  
-    img.onload = () => {
-        ctx.drawImage(img, 310, 10, 40, 40); // 右上角位置
+        ctx.fillText(cardData.address, 20, 155);
         
-        // 图片加载完成后再下载
         const link = document.createElement('a');
-        link.download = `${cardData.name}-business-card.png`;  
-        link.href = canvas.toDataURL('image/png', 1.0);  
+        link.download = `${cardData.name}-business-card.png`;
+        link.href = canvas.toDataURL();
         link.click();
-    };
-    img.src = uploadedImage;
-} else {  
-    // 没有图片直接下载
-    const link = document.createElement('a');  
-    link.download = `${cardData.name}-business-card.png`;  
-    link.href = canvas.toDataURL('image/png', 1.0);
-    link.click();
-}
-        
 
         if (typeof gtag !== 'undefined') {
-            gtag('event', 'card_downloaded', {  
+            gtag('event', 'card_downloaded', {
                 'event_category': 'Editor',
-                'event_label': 'PNG_Export'  
+                'event_label': 'PNG_Export'
             });
         }
     };
@@ -846,25 +699,10 @@ if (uploadedImage) {
                 color: style.primaryColor,
                 fontFamily: style.fontFamily,
                 width: '350px', height: '200px', padding: '20px',
-                borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',    
-                display: 'flex', flexDirection: 'column', justifyContent: 'space-between',  
-                cursor: isEditing ? 'pointer' : 'default', position: 'relative'
+                borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',  
+                display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+                cursor: isEditing ? 'pointer' : 'default'
             }}>
-                {uploadedImage && (
-    <img 
-        src={uploadedImage} 
-        alt="Logo" 
-        style={{
-            position: 'absolute',
-            top: '10px',
-            right: '10px',
-            width: '40px',
-            height: '40px',
-            objectFit: 'cover',
-            borderRadius: '4px'
-        }}
-    />
-)}
                 <div>
                     <div style={{ 
                         fontSize: `${style.nameStyle.fontSize}px`, 
@@ -917,7 +755,7 @@ if (uploadedImage) {
                     fontWeight: style.contactStyle.fontWeight,
                     fontStyle: style.contactStyle.fontStyle,
                     textAlign: style.contactStyle.textAlign,
-                    color: style.secondaryColor,   
+                    color: style.secondaryColor, 
                     lineHeight: '1.4' 
                 }}>
                     <div onClick={() => isEditing && setActiveField('phone')} 
@@ -978,7 +816,7 @@ if (uploadedImage) {
                             <h2 className="text-xl font-semibold">✏️ Card Preview</h2>
                             <div className="flex gap-2">
                                 <button onClick={() => setIsEditing(!isEditing)}
-                                        className={`px-3 py-1 rounded text-sm font-medium ${isEditing ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>  
+                                        className={`px-3 py-1 rounded text-sm font-medium ${isEditing ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}>
                                     {isEditing ? 'Finish Editing' : 'Edit Mode'}
                                 </button>
                                 <button onClick={exportCard}
@@ -1014,30 +852,10 @@ if (uploadedImage) {
                                 {renderTextToolbar()}
                             </div>
                         )}
-                    </div>  
+                    </div>
                     <div className="bg-white rounded-lg shadow-sm p-6">
-                        <h2 className="text-xl font-semibold mb-4">🎨 Style Settings</h2>  
-                        <div className="space-y-4">  
-                            <div>  
-    <label className="block text-sm font-medium text-gray-700 mb-2">Upload Image/Logo</label>
-    <input 
-        type="file" 
-        accept="image/*"   
-        onChange={handleImageUpload}
-        className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
-    />
-    {uploadedImage && (
-        <div className="mt-2">
-            <img src={uploadedImage} alt="Uploaded" className="w-16 h-16 object-cover rounded border" />  
-            <button 
-                onClick={() => setUploadedImage(null)}
-                className="ml-2 px-2 py-1 bg-red-500 text-white text-xs rounded"
-            >
-                Remove
-            </button>
-        </div>
-    )}
-</div>
+                        <h2 className="text-xl font-semibold mb-4">🎨 Style Settings</h2>
+                        <div className="space-y-4">
                             <div>  
                                 <label className="block text-sm font-medium text-gray-700 mb-2">Background Color</label>
                                 <div className="flex gap-2">
@@ -1084,7 +902,7 @@ if (uploadedImage) {
                                     <div key={field.key}>
                                         <label className="block text-xs font-medium text-gray-600 mb-1">{field.icon} {field.label}</label>
                                         <input type="text" value={cardData[field.key]} onChange={(e) => updateCardData(field.key, e.target.value)}
-                                               className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500" />  
+                                               className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500" />
                                     </div>
                                 ))}
                             </div>
@@ -1099,45 +917,5 @@ if (uploadedImage) {
 ReactDOM.render(<BusinessCardEditor />, document.getElementById('business-card-editor'));
 </script>
 
-    <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const btn = document.getElementById('translateBtn');
-    const dropdown = document.getElementById('langDropdown');
-    const currentLang = document.getElementById('currentLang');
-    const options = document.querySelectorAll('.translate-option');
-    
-    btn?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dropdown.classList.toggle('show');
-    });
-    
-    document.addEventListener('click', () => dropdown.classList.remove('show'));
-    
-    options.forEach(option => {
-        option.addEventListener('click', () => {
-            const lang = option.dataset.lang;
-            const text = option.textContent.split(' ')[1];
-            
-            options.forEach(opt => opt.classList.remove('active'));
-            option.classList.add('active');
-            currentLang.textContent = text;
-            
-            if (lang === 'en') {
-                if (location.hash.includes('googtrans')) {
-                    location.hash = '';
-                    location.reload();
-                }
-            } else {
-                location.hash = `#googtrans(en|${lang})`;
-                location.reload();
-            }
-            
-            dropdown.classList.remove('show');
-        });
-    });
-});
-</script>
-
 </body>
 </html>
-    
