@@ -97,14 +97,74 @@
         
         footer { background: #1f2937; color: white; padding: 40px 0; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .footer-section h4 { font-size: 18px; margin-bottom: 15px; color: #f9fafb; }
+        .footer-section h4 { font-size: 18px; margin-bottom: 15px; color: #f9fafb; }  
         .footer-section p, .footer-section a { color: #d1d5db; text-decoration: none; }
         .footer-section a:hover { color: white; }
         .footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #374151; color: #9ca3af; }
 
-        /* Google Translate 样式 */
-        .goog-te-banner-frame { display: none !important; }
-        body { top: 0 !important; }
+        /* 完全隐藏Google翻译横幅和相关元素 */
+
+/* 隐藏翻译横幅框架 */
+.goog-te-banner-frame {
+    display: none !important;
+}
+
+/* 隐藏翻译横幅容器 */
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+
+/* 修复body位置偏移 */
+body {
+    top: 0 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* 隐藏所有Google翻译相关的横幅 */
+.goog-te-banner-frame,
+.goog-te-banner-frame *,
+iframe[src*="translate.google"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+}
+
+/* 确保页面顶部没有空白 */
+html {
+    margin-top: 0 !important;
+}
+
+/* 隐藏Google翻译的"由Google翻译提供"链接 */
+.goog-logo-link {
+    display: none !important;
+}
+
+.goog-te-gadget > span > a {
+    display: none !important;
+}
+
+/* 隐藏"翻译此页"的提示 */
+.goog-te-menu-frame {
+    max-height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* 强制隐藏任何translate相关的iframe */
+iframe[id^="google_translate"] {
+    display: none !important;
+    height: 0 !important;
+    width: 0 !important;
+}
+
+/* 确保网站header始终在顶部 */
+header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9999 !important;
+}
         .google-translate-container { position: relative; display: inline-block; }
         .goog-te-gadget { font-size: 0; }
         .goog-te-gadget .goog-te-combo {
