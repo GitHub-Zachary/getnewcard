@@ -27,6 +27,19 @@
             gtag('event', action, {'event_category': category,'event_label': action});
         }
     </script>
+
+    <!-- Google Translate -->
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'zh-CN,es,fr,de,ja,ko,pt,ru,ar,hi,it,nl,sv,da,no,fi,pl,tr,he,th,vi,id,ms,tl,uk,cs,hu,ro,bg,hr,sk,sl,et,lv,lt,mt,ga,cy,is,mk,sq,eu,ca,gl',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -36,20 +49,19 @@
         header { background: white; padding: 1rem 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
         .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .logo { font-size: 24px; font-weight: bold; color: #6366f1; text-decoration: none; }
-        .nav { display: flex; gap: 20px; }
+        .nav { display: flex; gap: 20px; align-items: center; }
         .nav a { text-decoration: none; color: #666; font-weight: 500; transition: color 0.3s; }
         .nav a:hover { color: #6366f1; }
         .cta-btn { background: #6366f1; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; transition: all 0.3s; }
-        .cta-btn:hover { background: #4f46e5; transform: translateY(-1px); }  
+        .cta-btn:hover { background: #4f46e5; transform: translateY(-1px); }  
         
         .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 0; text-align: center; }
-        .hero h1 { font-size: 48px; margin-bottom: 20px; font-weight: 800; }  
+        .hero h1 { font-size: 48px; margin-bottom: 20px; font-weight: 800; }  
         .hero p { font-size: 20px; margin-bottom: 30px; opacity: 0.9; }
         .hero-btn { background: white; color: #6366f1; padding: 15px 30px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 10px; font-weight: 600; transition: all 0.3s; }
         .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
         
-        .editor { background: white; padding: 40px 0; }  
-        
+        .editor { background: white; padding: 40px 0; }  
         
         /* Content Sections */
         .content-section { padding: 60px 0; }
@@ -63,7 +75,7 @@
         .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
         .content-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         
-        .features { padding: 60px 0; background: #f8f9fa; }  
+        .features { padding: 60px 0; background: #f8f9fa; }  
         .features h2 { text-align: center; font-size: 36px; margin-bottom: 40px; color: #1f2937; }
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
         .feature { background: white; padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s; }
@@ -89,32 +101,56 @@
         .footer-section p, .footer-section a { color: #d1d5db; text-decoration: none; }
         .footer-section a:hover { color: white; }
         .footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #374151; color: #9ca3af; }
+
+        /* Google Translate 样式 */
+        .goog-te-banner-frame { display: none !important; }
+        body { top: 0 !important; }
+        .google-translate-container { position: relative; display: inline-block; }
+        .goog-te-gadget { font-size: 0; }
+        .goog-te-gadget .goog-te-combo {
+            margin: 0;
+            padding: 6px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            background: white;
+            font-size: 14px;
+            color: #374151;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .goog-te-gadget .goog-te-combo:hover {
+            border-color: #6366f1;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
+        }
+        .goog-te-menu-value span:first-child { display: none; }
+        .goog-te-menu-value:before { content: '🌐 Language: '; font-size: 14px; color: #666; }
         
         @media (max-width: 768px) {
             .hero h1 { font-size: 32px; }
-            .nav { display: none; }  
-            .content-grid { grid-template-columns: 1fr; gap: 20px; }  
-            .content-section h2 { font-size: 28px; }  
+            .nav { display: none; }  
+            .content-grid { grid-template-columns: 1fr; gap: 20px; }  
+            .content-section h2 { font-size: 28px; }
         }
     </style>
     <!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <header>
         <div class="header-content">
             <a href="#" class="logo">CardCraft</a>
             <nav class="nav">
-    <a href="#editor">Editor</a>
-    <a href="/business-card-templates.html">Templates</a>
-    <a href="/how-to-design-business-cards.html">Guide</a>
-    <a href="#tips">Tips</a>
-    <a href="#features">Features</a>
-    <!-- 添加翻译按钮 -->
-    <div class="google-translate-container">
-        <div id="google_translate_element"></div>
-    </div>
-</nav>
+                <a href="#editor">Editor</a>
+                <a href="/business-card-templates.html">Templates</a>
+                <a href="/how-to-design-business-cards.html">Guide</a>
+                <a href="#tips">Tips</a>
+                <a href="#features">Features</a>
+                <!-- Google Translate Button -->
+                <div class="google-translate-container">
+                    <div id="google_translate_element"></div>
+                </div>
+            </nav>
             <a href="#editor" class="cta-btn">Start Creating</a>
         </div>
     </header>
@@ -128,10 +164,10 @@
     </section>
 
     <section id="editor" class="editor">
-    <div class="container">
-        <div id="business-card-editor"></div>
-    </div>
-</section>
+        <div class="container">
+            <div id="business-card-editor"></div>
+        </div>
+    </section>
 
     <!-- Business Card Design Guide -->
     <section id="guide" class="content-section alt">
@@ -276,7 +312,7 @@
                     <p>Start with industry-tested templates designed by professionals for maximum impact.</p>
                 </div>
                 <div class="feature">
-                    <div class="feature-icon">⚡</div>  
+                    <div class="feature-icon">⚡</div>  
                     <h3>Instant Download</h3>
                     <p>Export high-resolution PNG files ready for professional printing or digital sharing.</p>
                 </div>
@@ -322,7 +358,7 @@
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <p><a href="#editor">Business Card Maker</a></p>
-                    <p><a href="#templates">Free Templates</a></p>
+                    <p><a href="/business-card-templates.html">Free Templates</a></p>
                     <p><a href="#guide">Design Guide</a></p>
                     <p><a href="#tips">Design Tips</a></p>
                 </div>
@@ -345,13 +381,13 @@
                 <p>&copy; 2025 CardCraft. Professional business card maker - completely free. Create unlimited business cards with our online design tool.</p>
             </div>
         </div>
-    </footer>  
+    </footer>  
 
     <!-- React库 -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>  
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>  
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>      
-
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>  
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>    
+    
     <script type="text/babel">
 const { useState, useRef } = React;  
 
@@ -923,4 +959,3 @@ ReactDOM.render(<BusinessCardEditor />, document.getElementById('business-card-e
 
 </body>
 </html>
-    
