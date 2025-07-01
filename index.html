@@ -351,11 +351,54 @@
 <script type="text/babel">
 const { useState, useRef } = React;  
 
-const DownloadIcon = () => (  
+const DownloadIcon = () => (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
         <polyline points="7,10 12,15 17,10"/>
-        <line x1="12" y1="15" x2="12" y2="3"/>  
+        <line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+);
+
+// 文字编辑图标
+const BoldIcon = () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/>
+        <path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/>
+    </svg>
+);
+
+const ItalicIcon = () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <line x1="19" y1="4" x2="10" y2="4"/>
+        <line x1="14" y1="20" x2="5" y2="20"/>
+        <line x1="15" y1="4" x2="9" y2="20"/>
+    </svg>
+);
+
+const AlignLeftIcon = () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <line x1="17" y1="10" x2="3" y2="10"/>
+        <line x1="21" y1="6" x2="3" y2="6"/>
+        <line x1="21" y1="14" x2="3" y2="14"/>
+        <line x1="17" y1="18" x2="3" y2="18"/>
+    </svg>
+);
+
+const AlignCenterIcon = () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <line x1="18" y1="10" x2="6" y2="10"/>
+        <line x1="21" y1="6" x2="3" y2="6"/>
+        <line x1="21" y1="14" x2="3" y2="14"/>
+        <line x1="18" y1="18" x2="6" y2="18"/>  
+    </svg>
+);
+
+const AlignRightIcon = () => (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <line x1="21" y1="10" x2="7" y2="10"/>
+        <line x1="21" y1="6" x2="3" y2="6"/>
+        <line x1="21" y1="14" x2="3" y2="14"/>
+        <line x1="21" y1="18" x2="7" y2="18"/>
     </svg>
 );
 
@@ -371,7 +414,16 @@ const defaultTemplates = [
             email: "zhangsan@company.com",
             website: "www.company.com",
             address: "北京市朝阳区科技园",
-            style: { backgroundColor: "#ffffff", primaryColor: "#2563eb", secondaryColor: "#64748b", fontFamily: "Arial" }
+            style: { 
+    backgroundColor: "#ffffff", 
+    primaryColor: "#2563eb", 
+    secondaryColor: "#64748b", 
+    fontFamily: "Arial",
+    nameStyle: { fontSize: 18, fontWeight: 'bold', textAlign: 'left', fontStyle: 'normal' },
+    titleStyle: { fontSize: 14, fontWeight: 'normal', textAlign: 'left', fontStyle: 'normal' },
+    companyStyle: { fontSize: 14, fontWeight: 'normal', textAlign: 'left', fontStyle: 'normal' },
+    contactStyle: { fontSize: 12, fontWeight: 'normal', textAlign: 'left', fontStyle: 'normal' }
+}  
         }
     },
     {
@@ -385,7 +437,16 @@ const defaultTemplates = [
             email: "lisi@design.com",
             website: "www.design.com",
             address: "上海市徐汇区创意园",
-            style: { backgroundColor: "#1e293b", primaryColor: "#f8fafc", secondaryColor: "#94a3b8", fontFamily: "Arial" }
+            style: { 
+    backgroundColor: "#1e293b", 
+    primaryColor: "#f8fafc", 
+    secondaryColor: "#94a3b8", 
+    fontFamily: "Arial",
+    nameStyle: { fontSize: 18, fontWeight: 'bold', textAlign: 'left', fontStyle: 'normal' },
+    titleStyle: { fontSize: 14, fontWeight: 'normal', textAlign: 'left', fontStyle: 'normal' },
+    companyStyle: { fontSize: 14, fontWeight: 'normal', textAlign: 'left', fontStyle: 'normal' },
+    contactStyle: { fontSize: 12, fontWeight: 'normal', textAlign: 'left', fontStyle: 'normal' }
+}  
         }
     },
     {
@@ -399,7 +460,16 @@ const defaultTemplates = [
             email: "wangwu@ad.com",
             website: "www.creative.com",
             address: "深圳市南山区科技大厦",
-            style: { backgroundColor: "#7c3aed", primaryColor: "#ffffff", secondaryColor: "#e0e7ff", fontFamily: "Arial" }
+            style: { 
+    backgroundColor: "#7c3aed", 
+    primaryColor: "#ffffff", 
+    secondaryColor: "#e0e7ff", 
+    fontFamily: "Arial",
+    nameStyle: { fontSize: 18, fontWeight: 'bold', textAlign: 'left', fontStyle: 'normal' },
+    titleStyle: { fontSize: 14, fontWeight: 'normal', textAlign: 'left', fontStyle: 'normal' },
+    companyStyle: { fontSize: 14, fontWeight: 'normal', textAlign: 'left', fontStyle: 'normal' },
+    contactStyle: { fontSize: 12, fontWeight: 'normal', textAlign: 'left', fontStyle: 'normal' }
+}  
         }
     }
 ];
@@ -415,15 +485,38 @@ const BusinessCardEditor = () => {
         setCardData(prev => ({ ...prev, [field]: value }));
     };
 
-    const updateStyle = (styleField, value) => {
-        setCardData(prev => ({
+    const updateStyle = (styleField, value) => {  
+        setCardData(prev => ({  
             ...prev,
-            style: { ...prev.style, [styleField]: value }
+            style: { ...prev.style, [styleField]: value }  
         }));
     };
 
-    const selectTemplate = (template) => {
-        setSelectedTemplate(template);
+    // 更新文字样式
+const updateFieldStyle = (fieldType, styleProperty, value) => {
+    const styleKey = `${fieldType}Style`;
+    setCardData(prev => ({
+        ...prev,
+        style: {
+            ...prev.style,
+            [styleKey]: {
+                ...prev.style[styleKey],
+                [styleProperty]: value
+            }
+        }
+    }));
+};
+
+// 获取当前字段的样式类型
+const getFieldStyleType = (field) => {
+    if (field === 'name') return 'nameStyle';
+    if (field === 'title') return 'titleStyle';
+    if (field === 'company') return 'companyStyle';
+    return 'contactStyle';
+};
+
+    const selectTemplate = (template) => {  
+        setSelectedTemplate(template);  
         setCardData(template.data);
         setIsEditing(false);
         setActiveField(null);
@@ -472,41 +565,229 @@ const BusinessCardEditor = () => {
         }
     };
 
+    // 文字编辑工具栏
+const renderTextToolbar = () => {
+    if (!isEditing || !activeField) return null;
+
+    const styleType = getFieldStyleType(activeField);
+    const currentStyle = cardData.style[styleType];
+
+    return (
+        <div className="mt-2 p-3 bg-gray-50 rounded-lg border">
+            <div className="text-xs text-gray-600 mb-2">文字格式</div>
+            <div className="flex flex-wrap gap-2">
+                {/* 加粗 */}
+                <button
+                    onClick={() => updateFieldStyle(
+                        activeField === 'name' ? 'name' :
+                        activeField === 'title' ? 'title' :
+                        activeField === 'company' ? 'company' : 'contact',
+                        'fontWeight',
+                        currentStyle.fontWeight === 'bold' ? 'normal' : 'bold'
+                    )}
+                    className={`p-2 rounded border ${
+                        currentStyle.fontWeight === 'bold' 
+                            ? 'bg-blue-500 text-white border-blue-500' 
+                            : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                    }`}
+                    title="加粗"
+                >
+                    <BoldIcon />
+                </button>
+
+                {/* 斜体 */}
+                <button
+                    onClick={() => updateFieldStyle(
+                        activeField === 'name' ? 'name' :
+                        activeField === 'title' ? 'title' :
+                        activeField === 'company' ? 'company' : 'contact',
+                        'fontStyle',
+                        currentStyle.fontStyle === 'italic' ? 'normal' : 'italic'
+                    )}
+                    className={`p-2 rounded border ${
+                        currentStyle.fontStyle === 'italic' 
+                            ? 'bg-blue-500 text-white border-blue-500' 
+                            : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                    }`}
+                    title="斜体"
+                >
+                    <ItalicIcon />
+                </button>
+
+                {/* 分隔线 */}
+                <div className="w-px bg-gray-300 my-1"></div>
+
+                {/* 左对齐 */}
+                <button
+                    onClick={() => updateFieldStyle(
+                        activeField === 'name' ? 'name' :
+                        activeField === 'title' ? 'title' :
+                        activeField === 'company' ? 'company' : 'contact',
+                        'textAlign',
+                        'left'
+                    )}
+                    className={`p-2 rounded border ${
+                        currentStyle.textAlign === 'left' 
+                            ? 'bg-blue-500 text-white border-blue-500' 
+                            : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                    }`}
+                    title="左对齐"
+                >
+                    <AlignLeftIcon />
+                </button>
+
+                {/* 居中对齐 */}
+                <button
+                    onClick={() => updateFieldStyle(
+                        activeField === 'name' ? 'name' :
+                        activeField === 'title' ? 'title' :
+                        activeField === 'company' ? 'company' : 'contact',
+                        'textAlign',
+                        'center'
+                    )}
+                    className={`p-2 rounded border ${
+                        currentStyle.textAlign === 'center' 
+                            ? 'bg-blue-500 text-white border-blue-500' 
+                            : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                    }`}
+                    title="居中对齐"
+                >
+                    <AlignCenterIcon />
+                </button>
+
+                {/* 右对齐 */}
+                <button
+                    onClick={() => updateFieldStyle(
+                        activeField === 'name' ? 'name' :
+                        activeField === 'title' ? 'title' :
+                        activeField === 'company' ? 'company' : 'contact',
+                        'textAlign',
+                        'right'
+                    )}
+                    className={`p-2 rounded border ${
+                        currentStyle.textAlign === 'right' 
+                            ? 'bg-blue-500 text-white border-blue-500' 
+                            : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                    }`}
+                    title="右对齐"
+                >
+                    <AlignRightIcon />
+                </button>
+
+                {/* 分隔线 */}
+                <div className="w-px bg-gray-300 my-1"></div>
+
+                {/* 字体大小 */}
+                <select
+                    value={currentStyle.fontSize}
+                    onChange={(e) => updateFieldStyle(
+                        activeField === 'name' ? 'name' :
+                        activeField === 'title' ? 'title' :
+                        activeField === 'company' ? 'company' : 'contact',
+                        'fontSize',
+                        parseInt(e.target.value)
+                    )}
+                    className="px-2 py-1 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-blue-500"
+                >
+                    <option value={10}>10px</option>
+                    <option value={12}>12px</option>
+                    <option value={14}>14px</option>
+                    <option value={16}>16px</option>
+                    <option value={18}>18px</option>  
+                    <option value={20}>20px</option>
+                    <option value={24}>24px</option>
+                </select>
+            </div>
+        </div>
+    );
+};
+    
     const renderCardPreview = () => {
         const { style } = cardData;
         return (
             <div ref={cardRef} style={{
-                backgroundColor: style.backgroundColor,
+                backgroundColor: style.backgroundColor,  
                 color: style.primaryColor,
                 fontFamily: style.fontFamily,
                 width: '350px', height: '200px', padding: '20px',
-                borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                borderRadius: '8px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',  
                 display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
                 cursor: isEditing ? 'pointer' : 'default'
             }}>
                 <div>
-                    <div style={{ fontSize: '18px', fontWeight: 'bold', color: style.primaryColor, marginBottom: '4px' }}
-                         onClick={() => isEditing && setActiveField('name')}
-                         className={isEditing ? 'hover:bg-gray-100 hover:bg-opacity-20 rounded px-1' : ''}>
-                        {cardData.name}
-                    </div>
-                    <div style={{ fontSize: '14px', color: style.secondaryColor, marginBottom: '2px' }}
-                         onClick={() => isEditing && setActiveField('title')}
-                         className={isEditing ? 'hover:bg-gray-100 hover:bg-opacity-20 rounded px-1' : ''}>
-                        {cardData.title}
-                    </div>
-                    <div style={{ fontSize: '14px', color: style.secondaryColor, marginBottom: '12px' }}
-                         onClick={() => isEditing && setActiveField('company')}
-                         className={isEditing ? 'hover:bg-gray-100 hover:bg-opacity-20 rounded px-1' : ''}>
-                        {cardData.company}
-                    </div>
-                </div>
-                <div style={{ fontSize: '12px', color: style.secondaryColor, lineHeight: '1.4' }}>
-                    <div onClick={() => isEditing && setActiveField('phone')} className={isEditing ? 'hover:bg-gray-100 hover:bg-opacity-20 rounded px-1 mb-1' : 'mb-1'}>📞 {cardData.phone}</div>
-                    <div onClick={() => isEditing && setActiveField('email')} className={isEditing ? 'hover:bg-gray-100 hover:bg-opacity-20 rounded px-1 mb-1' : 'mb-1'}>✉️ {cardData.email}</div>
-                    <div onClick={() => isEditing && setActiveField('website')} className={isEditing ? 'hover:bg-gray-100 hover:bg-opacity-20 rounded px-1 mb-1' : 'mb-1'}>🌐 {cardData.website}</div>
-                    <div onClick={() => isEditing && setActiveField('address')} className={isEditing ? 'hover:bg-gray-100 hover:bg-opacity-20 rounded px-1' : ''}>📍 {cardData.address}</div>
-                </div>
+    <div style={{ 
+        fontSize: `${style.nameStyle.fontSize}px`, 
+        fontWeight: style.nameStyle.fontWeight,
+        fontStyle: style.nameStyle.fontStyle,
+        textAlign: style.nameStyle.textAlign,
+        color: style.primaryColor, 
+        marginBottom: '4px',
+        lineHeight: '1.2'
+    }}
+         onClick={() => isEditing && setActiveField('name')}
+         className={isEditing ? 'hover:bg-gray-100 hover:bg-opacity-20 rounded px-1' : ''}>
+        {cardData.name.split('\n').map((line, index) => (
+            <div key={index}>{line}</div>
+        ))}
+    </div>
+    <div style={{ 
+        fontSize: `${style.titleStyle.fontSize}px`, 
+        fontWeight: style.titleStyle.fontWeight,
+        fontStyle: style.titleStyle.fontStyle,
+        textAlign: style.titleStyle.textAlign,
+        color: style.secondaryColor, 
+        marginBottom: '2px',
+        lineHeight: '1.2'
+    }}
+         onClick={() => isEditing && setActiveField('title')}
+         className={isEditing ? 'hover:bg-gray-100 hover:bg-opacity-20 rounded px-1' : ''}>
+        {cardData.title.split('\n').map((line, index) => (
+            <div key={index}>{line}</div>
+        ))}
+    </div>
+    <div style={{ 
+        fontSize: `${style.companyStyle.fontSize}px`, 
+        fontWeight: style.companyStyle.fontWeight,
+        fontStyle: style.companyStyle.fontStyle,
+        textAlign: style.companyStyle.textAlign,
+        color: style.secondaryColor, 
+        marginBottom: '12px',
+        lineHeight: '1.2'
+    }}
+         onClick={() => isEditing && setActiveField('company')}
+         className={isEditing ? 'hover:bg-gray-100 hover:bg-opacity-20 rounded px-1' : ''}>
+        {cardData.company.split('\n').map((line, index) => (  
+            <div key={index}>{line}</div>
+        ))}
+    </div>
+</div>
+                <div style={{ 
+    fontSize: `${style.contactStyle.fontSize}px`, 
+    fontWeight: style.contactStyle.fontWeight,
+    fontStyle: style.contactStyle.fontStyle,
+    textAlign: style.contactStyle.textAlign,
+    color: style.secondaryColor, 
+    lineHeight: '1.4' 
+}}>
+    <div onClick={() => isEditing && setActiveField('phone')} 
+         className={isEditing ? 'hover:bg-gray-100 hover:bg-opacity-20 rounded px-1 mb-1' : 'mb-1'}>
+        📞 {cardData.phone}
+    </div>
+    <div onClick={() => isEditing && setActiveField('email')} 
+         className={isEditing ? 'hover:bg-gray-100 hover:bg-opacity-20 rounded px-1 mb-1' : 'mb-1'}>
+        ✉️ {cardData.email}
+    </div>
+    <div onClick={() => isEditing && setActiveField('website')} 
+         className={isEditing ? 'hover:bg-gray-100 hover:bg-opacity-20 rounded px-1 mb-1' : 'mb-1'}>
+        🌐 {cardData.website}
+    </div>
+    <div onClick={() => isEditing && setActiveField('address')} 
+         className={isEditing ? 'hover:bg-gray-100 hover:bg-opacity-20 rounded px-1' : ''}>
+        📍 {cardData.address.split('\n').map((line, index) => (
+            <div key={index}>{line}</div>
+        ))}
+    </div>
+</div>
             </div>
         );
     };
@@ -553,23 +834,29 @@ const BusinessCardEditor = () => {
                         </div>
                         <div className="flex justify-center">{renderCardPreview()}</div>
                         {isEditing && activeField && (
-                            <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+                            <div className="mt-4 p-3 bg-blue-50 rounded-lg">  
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     编辑 {activeField === 'name' ? '姓名' : activeField === 'title' ? '职位' : activeField === 'company' ? '公司' : activeField === 'phone' ? '电话' : activeField === 'email' ? '邮箱' : activeField === 'website' ? '网站' : '地址'}
                                 </label>
-                                <input type="text" value={cardData[activeField]} onChange={(e) => updateCardData(activeField, e.target.value)}
-                                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                       placeholder={`请输入${activeField === 'name' ? '姓名' : activeField === 'title' ? '职位' : activeField === 'company' ? '公司名称' : activeField === 'phone' ? '联系电话' : activeField === 'email' ? '邮箱地址' : activeField === 'website' ? '网站地址' : '公司地址'}`} />
+                                <textarea
+    value={cardData[activeField]}
+    onChange={(e) => updateCardData(activeField, e.target.value)}
+    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"  
+    rows={activeField === 'address' ? 3 : 1}
+    placeholder={`请输入${activeField === 'name' ? '姓名' : activeField === 'title' ? '职位' : activeField === 'company' ? '公司名称' : activeField === 'phone' ? '联系电话' : activeField === 'email' ? '邮箱地址' : activeField === 'website' ? '网站地址' : '公司地址'}`}
+/>
+<div className="text-xs text-gray-500 mt-1">提示：按Enter键可以换行</div>
+{renderTextToolbar()}
                             </div>
                         )}
                     </div>
                     <div className="bg-white rounded-lg shadow-sm p-6">
                         <h2 className="text-xl font-semibold mb-4">🎨 样式设置</h2>
                         <div className="space-y-4">
-                            <div>
+                            <div>  
                                 <label className="block text-sm font-medium text-gray-700 mb-2">背景颜色</label>
                                 <div className="flex gap-2">
-                                    {['#ffffff', '#1e293b', '#7c3aed', '#dc2626', '#059669'].map(color => (
+                                    {['#ffffff', '#1e293b', '#7c3aed', '#dc2626', '#059669'].map(color => (  
                                         <button key={color} onClick={() => updateStyle('backgroundColor', color)}
                                                 className={`w-8 h-8 rounded border-2 ${cardData.style.backgroundColor === color ? 'border-gray-900' : 'border-gray-300'}`}
                                                 style={{ backgroundColor: color }} />
