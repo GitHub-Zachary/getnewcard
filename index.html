@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CardCraft - Free Business Card Maker | Professional Design Tool</title>
-    <meta name="description" content="Create stunning business cards with our free drag-and-drop editor. Professional templates, business card design tips, and instant download. No design skills needed!">
-    <meta name="keywords" content="business card maker, free business card designer, online business card creator, professional business cards, card design tool, business card templates">  
+    <meta name="description" content="Create stunning business cards with our free drag-and-drop editor. Professional templates, business card design tips, and instant download. No design skills needed!">  
+    <meta name="keywords" content="business card maker, free business card designer, online business card creator, professional business cards, card design tool, business card templates">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
@@ -14,13 +14,13 @@
     <meta property="og:title" content="CardCraft - Free Business Card Maker">
     <meta property="og:description" content="Create professional business cards in minutes with our intuitive drag-and-drop editor">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://getnewcard.com">  
+    <meta property="og:url" content="https://getnewcard.com">
     
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27HFQ6CKGM"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-27HFQ6CKGM"></script>  
     <script>
         window.dataLayer = window.dataLayer || [];  
-        function gtag(){dataLayer.push(arguments);}
+        function gtag(){dataLayer.push(arguments);}  
         gtag('js', new Date());
         gtag('config', 'G-27HFQ6CKGM');
         function trackEvent(action, category = 'User Interaction') {
@@ -29,17 +29,17 @@
     </script>
 
     <!-- Google Translate -->
-    <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'en',
-        includedLanguages: 'zh-CN,es,fr,de,ja,ko,pt,ru,ar,hi,it,nl,sv,da,no,fi,pl,tr,he,th,vi,id,ms,tl,uk,cs,hu,ro,bg,hr,sk,sl,et,lv,lt,mt,ga,cy,is,mk,sq,eu,ca,gl',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: false
-      }, 'google_translate_element');
-    }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'zh-CN,es,fr,de,ja,ko,pt,ru,ar,hi,it,nl,sv',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>  
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -49,19 +49,20 @@
         header { background: white; padding: 1rem 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
         .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .logo { font-size: 24px; font-weight: bold; color: #6366f1; text-decoration: none; }
-        .nav { display: flex; gap: 20px; align-items: center; }
+        .nav { display: flex; gap: 20px; }
         .nav a { text-decoration: none; color: #666; font-weight: 500; transition: color 0.3s; }
         .nav a:hover { color: #6366f1; }
         .cta-btn { background: #6366f1; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; transition: all 0.3s; }
-        .cta-btn:hover { background: #4f46e5; transform: translateY(-1px); }  
+        .cta-btn:hover { background: #4f46e5; transform: translateY(-1px); }  
         
         .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 0; text-align: center; }
-        .hero h1 { font-size: 48px; margin-bottom: 20px; font-weight: 800; }  
+        .hero h1 { font-size: 48px; margin-bottom: 20px; font-weight: 800; }  
         .hero p { font-size: 20px; margin-bottom: 30px; opacity: 0.9; }
         .hero-btn { background: white; color: #6366f1; padding: 15px 30px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin: 10px; font-weight: 600; transition: all 0.3s; }
         .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
         
-        .editor { background: white; padding: 40px 0; }  
+        .editor { background: white; padding: 40px 0; }  
+        
         
         /* Content Sections */
         .content-section { padding: 60px 0; }
@@ -75,7 +76,7 @@
         .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
         .content-card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         
-        .features { padding: 60px 0; background: #f8f9fa; }  
+        .features { padding: 60px 0; background: #f8f9fa; }  
         .features h2 { text-align: center; font-size: 36px; margin-bottom: 40px; color: #1f2937; }
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
         .feature { background: white; padding: 30px; border-radius: 8px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: transform 0.3s; }
@@ -97,468 +98,21 @@
         
         footer { background: #1f2937; color: white; padding: 40px 0; }
         .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .footer-section h4 { font-size: 18px; margin-bottom: 15px; color: #f9fafb; }  
+        .footer-section h4 { font-size: 18px; margin-bottom: 15px; color: #f9fafb; }
         .footer-section p, .footer-section a { color: #d1d5db; text-decoration: none; }
         .footer-section a:hover { color: white; }
         .footer-bottom { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #374151; color: #9ca3af; }
 
-        /* 完全隐藏Google翻译横幅和相关元素 */
+        /* Google翻译隐藏横幅 */
+.goog-te-banner-frame { display: none !important; }
+body { top: 0 !important; }
 
-/* 隐藏翻译横幅框架 */
-.goog-te-banner-frame {
-    display: none !important;
-}
-
-/* 隐藏翻译横幅容器 */
-.goog-te-banner-frame.skiptranslate {
-    display: none !important;
-}
-
-/* 修复body位置偏移 */
-body {
-    top: 0 !important;
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-}
-
-/* 隐藏所有Google翻译相关的横幅 */
-.goog-te-banner-frame,
-.goog-te-banner-frame *,
-iframe[src*="translate.google"] {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    min-height: 0 !important;
-    max-height: 0 !important;
-}
-
-/* 确保页面顶部没有空白 */
-html {
-    margin-top: 0 !important;
-}
-
-/* 隐藏Google翻译的"由Google翻译提供"链接 */
-.goog-logo-link {
-    display: none !important;
-}
-
-.goog-te-gadget > span > a {
-    display: none !important;
-}
-
-/* 隐藏"翻译此页"的提示 */
-.goog-te-menu-frame {
-    max-height: 0 !important;
-    overflow: hidden !important;
-}
-
-/* 强制隐藏任何translate相关的iframe */
-iframe[id^="google_translate"] {
-    display: none !important;
-    height: 0 !important;
-    width: 0 !important;
-}
-
-/* 确保网站header始终在顶部 */
-header {
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 9999 !important;
-}
-        .google-translate-container { position: relative; display: inline-block; }
-        .goog-te-gadget { font-size: 0; }
-        .goog-te-gadget .goog-te-combo {
-            margin: 0;
-            padding: 6px 12px;
-            border: 1px solid #e5e7eb;
-            border-radius: 6px;
-            background: white;
-            font-size: 14px;
-            color: #374151;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        .goog-te-gadget .goog-te-combo:hover {
-            border-color: #6366f1;
-            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
-        }
-        .goog-te-menu-value span:first-child { display: none; }
-        .goog-te-menu-value:before { content: '🌐 Language: '; font-size: 14px; color: #666; }
-        
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 32px; }
-            .nav { display: none; }  
-            .content-grid { grid-template-columns: 1fr; gap: 20px; }  
-            .content-section h2 { font-size: 28px; }
-        }
-    </style>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-    <header>
-        <div class="header-content">
-            <a href="#" class="logo">CardCraft</a>
-            <nav class="nav">
-                <a href="#editor">Editor</a>
-                <a href="/business-card-templates.html">Templates</a>
-                <a href="/how-to-design-business-cards.html">Guide</a>
-                <a href="#tips">Tips</a>
-                <a href="#features">Features</a>
-                <!-- Google Translate Button -->  
-                <!-- 替换导航栏中的Google翻译部分 -->
-
-<!-- 现代化自定义翻译组件 -->
-<div class="modern-translate-container">
-    <button class="translate-button" id="translateBtn">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="2" y1="12" x2="22" y2="12"/>
-            <path d="m8 12c1.5-4.5 3.5-7 4-7s2.5 2.5 4 7"/>
-            <path d="m8 12c-1.5 4.5-3.5 7-4 7s-2.5-2.5-4-7"/>
-        </svg>
-        <span id="currentLang">English</span>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="6,9 12,15 18,9"/>
-        </svg>
-    </button>
-    
-    <div class="translate-dropdown" id="langDropdown">
-        <button class="translate-option active" data-lang="en" data-display="English">
-            🇺🇸 English
-        </button>
-        <button class="translate-option" data-lang="zh-CN" data-display="中文">
-            🇨🇳 中文 (简体)
-        </button>
-        <button class="translate-option" data-lang="es" data-display="Español">
-            🇪🇸 Español
-        </button>
-        <button class="translate-option" data-lang="fr" data-display="Français">
-            🇫🇷 Français
-        </button>
-        <button class="translate-option" data-lang="de" data-display="Deutsch">
-            🇩🇪 Deutsch
-        </button>
-        <button class="translate-option" data-lang="ja" data-display="日本語">
-            🇯🇵 日本語
-        </button>
-        <button class="translate-option" data-lang="ko" data-display="한국어">
-            🇰🇷 한국어
-        </button>
-        <button class="translate-option" data-lang="pt" data-display="Português">
-            🇵🇹 Português
-        </button>
-        <button class="translate-option" data-lang="ru" data-display="Русский">
-            🇷🇺 Русский
-        </button>
-        <button class="translate-option" data-lang="ar" data-display="العربية">
-            🇸🇦 العربية
-        </button>
-    </div>
-</div>
-
-<script>
-// 工作正常的现代翻译功能
-document.addEventListener('DOMContentLoaded', function() {
-    // 等待Google翻译加载完成
-    function waitForGoogleTranslate(callback) {
-        if (window.google && window.google.translate) {  
-            callback();
-        } else {
-            setTimeout(() => waitForGoogleTranslate(callback), 100);
-        }
-    }
-    
-    waitForGoogleTranslate(function() {
-        const translateBtn = document.getElementById('translateBtn');
-        const langDropdown = document.getElementById('langDropdown');
-        const currentLangSpan = document.getElementById('currentLang');
-        const translateOptions = document.querySelectorAll('.translate-option');
-        
-        // 切换下拉菜单
-        translateBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            langDropdown.classList.toggle('show');
-        });
-        
-        // 点击外部关闭下拉菜单
-        document.addEventListener('click', function() {
-            langDropdown.classList.remove('show');
-        });
-        
-        // 语言选择
-        translateOptions.forEach(option => {
-            option.addEventListener('click', function(e) {
-                e.stopPropagation();
-                
-                console.log('Language selected:', this.dataset.lang); // 调试用
-                
-                // 移除所有active状态
-                translateOptions.forEach(opt => opt.classList.remove('active'));
-                
-                // 添加当前选择的active状态
-                this.classList.add('active');
-                
-                // 更新显示的语言
-                const displayName = this.dataset.display;
-                const langCode = this.dataset.lang;
-                currentLangSpan.textContent = displayName;
-                
-                // 调用Google翻译
-                if (langCode === 'en') {
-                    // 如果选择英文，显示原文
-                    console.log('Switching to English');
-                    if (window.location.hash.includes('googtrans')) {
-                        window.location.hash = '';
-                        window.location.reload();
-                    }
-                } else {
-                    // 翻译到选择的语言
-                    console.log('Translating to:', langCode);
-                    
-                    // 方法1：使用hash方式（最可靠）
-                    const newHash = `#googtrans(en|${langCode})`;
-                    console.log('Setting hash:', newHash);
-                    window.location.hash = newHash;
-                    
-                    // 强制刷新来应用翻译
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 100);
-                }
-                
-                // 关闭下拉菜单
-                langDropdown.classList.remove('show');
-                
-                // Google Analytics追踪
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'language_change', {
-                        'event_category': 'Translation',
-                        'event_label': langCode
-                    });
-                }
-            });
-        });
-        
-        // 检查当前URL是否已经包含翻译参数
-        function updateUIFromHash() {
-            const hash = window.location.hash;
-            console.log('Current hash:', hash); // 调试用
-            
-            if (hash.includes('googtrans')) {
-                const match = hash.match(/googtrans\(en\|(.+?)\)/);
-                if (match) {
-                    const currentLang = match[1];
-                    console.log('Detected language from hash:', currentLang);
-                    
-                    const option = document.querySelector(`[data-lang="${currentLang}"]`);
-                    if (option) {
-                        translateOptions.forEach(opt => opt.classList.remove('active'));
-                        option.classList.add('active');
-                        currentLangSpan.textContent = option.dataset.display;
-                        console.log('UI updated for language:', currentLang);
-                    }
-                }
-            } else {
-                // 没有翻译参数，显示英文
-                translateOptions.forEach(opt => opt.classList.remove('active'));
-                const englishOption = document.querySelector('[data-lang="en"]');
-                if (englishOption) {
-                    englishOption.classList.add('active');
-                    currentLangSpan.textContent = 'English';
-                }
-            }
-        }
-        
-        // 页面加载时检查
-        updateUIFromHash();
-        
-        // 监听hash变化
-        window.addEventListener('hashchange', updateUIFromHash);
-        
-        console.log('Translation system initialized'); // 调试用
-    });
-});
-
-// 添加额外的翻译触发方法（备用）
-function triggerTranslation(langCode) {
-    console.log('Backup translation trigger for:', langCode);
-    
-    if (langCode === 'en') {
-        // 返回英文
-        document.querySelectorAll('[class*="translated"]').forEach(el => {  
-            el.classList.remove('translated-ltr', 'translated-rtl');
-        });
-        
-        // 移除翻译样式
-        const style = document.getElementById('goog-gt-tt-style');  
-        if (style) style.remove();
-        
-        // 清除hash
-        if (window.location.hash.includes('googtrans')) {
-            window.location.hash = '';
-            window.location.reload();
-        }
-    } else {
-        // 应用翻译
-        window.location.hash = `#googtrans(en|${langCode})`;
-        window.location.reload();
-    }
-}
-
-    // 强制隐藏Google翻译横幅的JavaScript
-function forceHideBanner() {
-    console.log('Attempting to hide Google Translate banner...');
-    
-    // 隐藏翻译横幅
-    const banners = document.querySelectorAll('.goog-te-banner-frame, iframe[src*="translate"], .goog-te-banner-frame.skiptranslate');
-    console.log('Found banners:', banners.length);
-    
-    banners.forEach((banner, index) => {
-        console.log('Hiding banner', index, banner);
-        banner.style.display = 'none !important';
-        banner.style.visibility = 'hidden !important';
-        banner.style.height = '0 !important';
-        banner.style.minHeight = '0 !important';
-        banner.style.maxHeight = '0 !important';
-        banner.style.opacity = '0 !important';
-        banner.style.position = 'absolute !important';
-        banner.style.left = '-9999px !important';
-        banner.style.top = '-9999px !important';
-        
-        // 直接移除元素
-        if (banner.parentNode) {
-            banner.parentNode.removeChild(banner);
-        }
-    });
-    
-    // 查找并隐藏所有可能的翻译相关iframe
-    const iframes = document.querySelectorAll('iframe');
-    iframes.forEach(iframe => {
-        if (iframe.src && (iframe.src.includes('translate') || iframe.src.includes('google'))) {
-            console.log('Hiding iframe:', iframe.src);
-            iframe.style.display = 'none !important';
-            iframe.style.visibility = 'hidden !important';
-            iframe.style.height = '0 !important';
-            iframe.style.width = '0 !important';
-        }
-    });
-    
-    // 重置body位置
-    document.body.style.top = '0 !important';
-    document.body.style.marginTop = '0 !important';
-    document.body.style.paddingTop = '0 !important';
-    document.body.style.position = 'relative !important';
-    
-    // 重置html位置
-    document.documentElement.style.marginTop = '0 !important';
-    document.documentElement.style.paddingTop = '0 !important';
-    
-    console.log('Banner hide attempt completed');
-}
-
-// 多重执行策略
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded, starting banner hide sequence');
-    forceHideBanner();
-    
-    // 延迟执行多次
-    setTimeout(forceHideBanner, 100);
-    setTimeout(forceHideBanner, 500);
-    setTimeout(forceHideBanner, 1000);
-    setTimeout(forceHideBanner, 2000);
-    setTimeout(forceHideBanner, 3000);
-});
-
-// 页面完全加载后执行
-window.addEventListener('load', function() {
-    console.log('Window loaded, hiding banner again');
-    setTimeout(forceHideBanner, 100);
-    setTimeout(forceHideBanner, 500);
-    setTimeout(forceHideBanner, 1000);
-});
-
-// 监听DOM变化，防止横幅重新出现
-const observer = new MutationObserver(function(mutations) {
-    let shouldHide = false;
-    
-    mutations.forEach(function(mutation) {
-        if (mutation.addedNodes.length > 0) {
-            mutation.addedNodes.forEach(function(node) {
-                if (node.nodeType === 1) { // Element node
-                    if (node.classList && (
-                        node.classList.contains('goog-te-banner-frame') ||
-                        node.classList.contains('skiptranslate') ||
-                        (node.tagName === 'IFRAME' && node.src && node.src.includes('translate'))
-                    )) {
-                        console.log('New banner detected, hiding...');
-                        shouldHide = true;
-                        node.style.display = 'none !important';
-                        node.style.visibility = 'hidden !important';
-                        
-                        // 直接移除
-                        setTimeout(() => {
-                            if (node.parentNode) {
-                                node.parentNode.removeChild(node);
-                            }
-                        }, 10);
-                    }
-                }
-            });
-        }
-    });
-    
-    if (shouldHide) {
-        setTimeout(forceHideBanner, 10);
-    }
-});
-
-// 开始观察
-if (document.body) {
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['class', 'style']
-    });
-} else {
-    document.addEventListener('DOMContentLoaded', function() {
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true,
-            attributes: true,
-            attributeFilter: ['class', 'style']
-        });
-    });
-}
-
-// 额外的强制方法：直接从head移除相关样式
-function removeGoogleStyles() {
-    const styles = document.querySelectorAll('style, link');
-    styles.forEach(style => {
-        if (style.innerHTML && style.innerHTML.includes('goog-te-banner-frame')) {
-            style.innerHTML = style.innerHTML.replace(/\.goog-te-banner-frame[^}]*}/g, '.goog-te-banner-frame{display:none!important}');
-        }
-    });
-}
-
-setInterval(removeGoogleStyles, 1000);
-
-console.log('Advanced banner hiding system initialized');
-
-</script>
-    
-</script>
-
-<style>
-/* 现代翻译组件样式 */
-.modern-translate-container {
+/* 现代翻译按钮样式 */
+.translate-container {
     position: relative;
     display: inline-block;
 }
-
-.translate-button {
+.translate-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -568,18 +122,13 @@ console.log('Advanced banner hiding system initialized');
     border: none;
     border-radius: 8px;
     font-size: 14px;
-    font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
 }
-
-.translate-button:hover {
+.translate-btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-    background: linear-gradient(135deg, #5856eb 0%, #7c3aed 100%);
 }
-
 .translate-dropdown {
     position: absolute;
     top: 100%;
@@ -587,63 +136,68 @@ console.log('Advanced banner hiding system initialized');
     background: white;
     border-radius: 12px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-    border: 1px solid rgba(0, 0, 0, 0.08);
     min-width: 200px;
     z-index: 1000;
     display: none;
-    max-height: 300px;
-    overflow-y: auto;
-    margin-top: 4px;
+    margin-top: 4px;  
 }
-
-.translate-dropdown.show {
-    display: block;
-    animation: slideDown 0.2s ease;
-}
-
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }  
-}
-
+.translate-dropdown.show { display: block; }
 .translate-option {
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 12px 16px;
     cursor: pointer;
-    transition: background 0.2s ease;
-    font-size: 14px;
-    color: #374151;
     border: none;
     background: none;
     width: 100%;
     text-align: left;
+    font-size: 14px;
+    color: #374151;
 }
-
-.translate-option:hover {
-    background: #f8fafc;
-}
-
-.translate-option.active {  
-    background: #eff6ff;
-    color: #2563eb;
-    font-weight: 500;
-}
-
-@media (max-width: 768px) {
-    .translate-button {
-        padding: 6px 12px;
-        font-size: 12px;
-    }
-    .translate-dropdown {
-        right: -50px;
-        min-width: 180px;
-    }
-}
-</style>
+.translate-option:hover { background: #f8fafc; }
+.translate-option.active { background: #eff6ff; color: #2563eb; font-weight: 500; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .nav { display: none; }    
+            .content-grid { grid-template-columns: 1fr; gap: 20px; }  
+            .content-section h2 { font-size: 28px; }
+        }
+    </style>
+    <!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">CardCraft</a>
+            <nav class="nav">
+    <a href="#editor">Editor</a>
+    <a href="/business-card-templates.html">Templates</a>
+    <a href="/how-to-design-business-cards.html">Guide</a>
+    <a href="#tips">Tips</a>
+    <a href="#features">Features</a>
+    
+    <div class="translate-container">
+        <button class="translate-btn" id="translateBtn">
+            🌐 <span id="currentLang">English</span> ▼
+        </button>
+        <div class="translate-dropdown" id="langDropdown">
+            <button class="translate-option active" data-lang="en">🇺🇸 English</button>
+            <button class="translate-option" data-lang="zh-CN">🇨🇳 中文</button>  
+            <button class="translate-option" data-lang="es">🇪🇸 Español</button>
+            <button class="translate-option" data-lang="fr">🇫🇷 Français</button>
+            <button class="translate-option" data-lang="de">🇩🇪 Deutsch</button>
+            <button class="translate-option" data-lang="ja">🇯🇵 日本語</button>
+            <button class="translate-option" data-lang="ko">🇰🇷 한국어</button>
+            <button class="translate-option" data-lang="pt">🇵🇹 Português</button>
+            <button class="translate-option" data-lang="ru">🇷🇺 Русский</button>
+            <button class="translate-option" data-lang="ar">🇸🇦 العربية</button>
+        </div>
+    </div>
             </nav>
-            <a href="#editor" class="cta-btn">Start Creating</a>
+            <a href="#editor" class="cta-btn">Start Creating</a>  
         </div>
     </header>
 
@@ -656,10 +210,10 @@ console.log('Advanced banner hiding system initialized');
     </section>
 
     <section id="editor" class="editor">
-        <div class="container">
-            <div id="business-card-editor"></div>
-        </div>
-    </section>
+    <div class="container">
+        <div id="business-card-editor"></div>
+    </div>
+</section>
 
     <!-- Business Card Design Guide -->
     <section id="guide" class="content-section alt">
@@ -804,7 +358,7 @@ console.log('Advanced banner hiding system initialized');
                     <p>Start with industry-tested templates designed by professionals for maximum impact.</p>
                 </div>
                 <div class="feature">
-                    <div class="feature-icon">⚡</div>  
+                    <div class="feature-icon">⚡</div>  
                     <h3>Instant Download</h3>
                     <p>Export high-resolution PNG files ready for professional printing or digital sharing.</p>
                 </div>
@@ -850,7 +404,7 @@ console.log('Advanced banner hiding system initialized');
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <p><a href="#editor">Business Card Maker</a></p>
-                    <p><a href="/business-card-templates.html">Free Templates</a></p>
+                    <p><a href="#templates">Free Templates</a></p>
                     <p><a href="#guide">Design Guide</a></p>
                     <p><a href="#tips">Design Tips</a></p>
                 </div>
@@ -873,13 +427,13 @@ console.log('Advanced banner hiding system initialized');
                 <p>&copy; 2025 CardCraft. Professional business card maker - completely free. Create unlimited business cards with our online design tool.</p>
             </div>
         </div>
-    </footer>  
+    </footer>  
 
     <!-- React库 -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>  
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>    
-    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>  
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>  
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>      
+
     <script type="text/babel">
 const { useState, useRef } = React;  
 
@@ -1434,7 +988,7 @@ const BusinessCardEditor = () => {
                                     <div key={field.key}>
                                         <label className="block text-xs font-medium text-gray-600 mb-1">{field.icon} {field.label}</label>
                                         <input type="text" value={cardData[field.key]} onChange={(e) => updateCardData(field.key, e.target.value)}
-                                               className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500" />
+                                               className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500" />  
                                     </div>
                                 ))}
                             </div>
@@ -1449,5 +1003,45 @@ const BusinessCardEditor = () => {
 ReactDOM.render(<BusinessCardEditor />, document.getElementById('business-card-editor'));
 </script>
 
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('translateBtn');
+    const dropdown = document.getElementById('langDropdown');
+    const currentLang = document.getElementById('currentLang');
+    const options = document.querySelectorAll('.translate-option');
+    
+    btn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('show');
+    });
+    
+    document.addEventListener('click', () => dropdown.classList.remove('show'));
+    
+    options.forEach(option => {
+        option.addEventListener('click', () => {
+            const lang = option.dataset.lang;
+            const text = option.textContent.split(' ')[1];
+            
+            options.forEach(opt => opt.classList.remove('active'));
+            option.classList.add('active');
+            currentLang.textContent = text;
+            
+            if (lang === 'en') {
+                if (location.hash.includes('googtrans')) {
+                    location.hash = '';
+                    location.reload();
+                }
+            } else {
+                location.hash = `#googtrans(en|${lang})`;
+                location.reload();
+            }
+            
+            dropdown.classList.remove('show');
+        });
+    });
+});
+</script>
+
 </body>
 </html>
+    
